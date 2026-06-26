@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Mai Van Dinh — Product Design Lead</title>
+  <meta name="description" content="Product Design Lead with 5+ years of UX/UI experience. Expert in design systems, team leadership, and GenAI workflows. Based in Hanoi, Vietnam.">
+
+  <script src="./tailwind.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#061A33',
+              900: '#0A2544',
+              800: '#0F2D52',
+              700: '#13355F'
+            },
+            emerald: '#33b44a'
+          },
+          fontFamily: {
+            sans: ['system-ui', 'sans-serif'],
+            mono: ['monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="min-h-screen bg-navy-900 text-white font-sans antialiased">
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-navy-950/95 backdrop-blur-sm">
+    <div class="mx-auto flex max-w-[1200px] items-center justify-between px-6 py-4">
+      <a href="#hero" class="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.25em] text-white">
+        <span class="flex h-9 w-9 items-center justify-center rounded-full border border-emerald text-emerald">M</span>
+        MAI VAN DINH
+      </a>
+      <nav class="hidden items-center gap-8 md:flex text-sm text-slate-300">
+        <a href="#about" class="transition hover:text-white">About</a>
+        <a href="#experience" class="transition hover:text-white">Experience</a>
+        <a href="#skills" class="transition hover:text-white">Skills</a>
+        <a href="#works" class="transition hover:text-white">Works</a>
+        <a href="#contact" class="transition hover:text-white">Contact</a>
+      </nav>
+      <a href="#contact" class="hidden rounded-full border border-white/15 bg-emerald px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-navy-950 transition hover:bg-emerald/90 md:inline-flex">Let's Talk</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(51,180,74,0.15),_transparent_30%),linear-gradient(180deg,#061A33_0%,#0A2544_100%)] px-6 py-24">
+      <div class="mx-auto flex max-w-[1200px] flex-col gap-14 lg:flex-row lg:items-center lg:gap-24">
+        <div class="lg:w-7/12">
+          <div class="mb-6 inline-flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-emerald/80">
+            <span class="h-1 w-1 rounded-full bg-emerald"></span>
+            Available for Senior Roles · Hanoi, VN
+          </div>
+          <h1 class="font-display text-5xl font-black uppercase leading-[0.9] tracking-[-0.04em] text-white sm:text-6xl lg:text-[5rem]">
+            <span>Mai Van</span><br>
+            <span>Dinh<span class="text-emerald">.</span></span>
+          </h1>
+          <p class="mt-8 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
+            Product Design Lead with <span class="text-white font-semibold">5+ years</span> shipping UX/UI for cybersecurity, real estate, and enterprise platforms. Building unified design systems and GenAI-assisted workflows for teams that ship fast.
+          </p>
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a href="https://behance.net/megadinh91" target="_blank" class="inline-flex items-center gap-3 rounded-full bg-emerald px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-navy-950 transition hover:bg-emerald/90">View Behance</a>
+            <a href="https://dribbble.com/megadinh" target="_blank" class="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-100 transition hover:border-emerald hover:text-emerald">Dribbble Shots</a>
+          </div>
+          <div class="mt-12 grid gap-4 sm:grid-cols-3">
+            <div>
+              <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Email</p>
+              <a href="mailto:megadinh@gmail.com" class="mt-2 block text-sm text-white hover:text-emerald">megadinh@gmail.com</a>
+            </div>
+            <div>
+              <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Phone</p>
+              <a href="tel:+84869966206" class="mt-2 block text-sm text-white hover:text-emerald">+84 869 966 206</a>
+            </div>
+            <div>
+              <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Based in</p>
+              <p class="mt-2 text-sm text-slate-200">Hanoi, Vietnam</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:w-5/12">
+          <div class="overflow-hidden rounded-3xl border border-white/10 bg-navy-800 p-1 shadow-[0_30px_80px_rgba(0,0,0,0.25)]">
+            <img src="image/John (1).jpg" alt="Mai Van Dinh portrait" class="h-full w-full object-cover" />
+          </div>
+          <div class="mt-6 rounded-3xl border border-white/10 bg-navy-950/80 p-5 text-sm text-slate-200">
+            <p class="uppercase tracking-[0.2em] text-slate-500">Currently</p>
+            <p class="mt-2 text-white font-semibold">Product Design Lead</p>
+            <p class="text-emerald">@ CMC Cyber Security</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="bg-navy-900 px-6 py-24">
+      <div class="mx-auto max-w-[1200px] space-y-16">
+        <div class="grid gap-10 lg:grid-cols-[360px_1fr] lg:items-end">
+          <div>
+            <div class="mb-5 inline-flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-emerald/80">
+              <span class="h-1 w-8 bg-emerald"></span>
+              01 / About
+            </div>
+            <p class="text-sm uppercase tracking-[0.2em] text-slate-400">Philosophy</p>
+          </div>
+          <div>
+            <h2 class="font-display text-4xl font-light leading-tight tracking-[-0.03em] text-white sm:text-5xl">
+              I design systems that scale — not just screens that ship. Every component, every token, every workflow is a decision about how a team will work tomorrow.
+            </h2>
+          </div>
+        </div>
+
+        <div class="grid gap-10 lg:grid-cols-[2fr_1fr]">
+          <div class="space-y-6 text-slate-300">
+            <p class="text-lg leading-8">
+              Over the past five years I moved from graphic design at VNExpress — Vietnam's largest newsroom — through cloud UI at Bizfly, product design at iCheck, and design leadership at Meey Land. Today I lead product design at <span class="text-white font-semibold">CMC Cyber Security</span>, where I'm responsible for the UX of cybersecurity tooling used by enterprise clients across Vietnam.
+            </p>
+            <p class="text-lg leading-8">
+              My work sits at the intersection of three disciplines: <span class="text-white">systems thinking</span>, <span class="text-white">data-heavy interfaces</span>, and <span class="text-white">GenAI-augmented workflow</span> — using AI to compress research, ideation, and variant generation without sacrificing craft.
+            </p>
+            <p class="text-lg leading-8">
+              I lead small design teams the same way I lead a component library: clear ownership, documented decisions, and a bias toward shipping over perfecting.
+            </p>
+
+            <div class="grid gap-6 sm:grid-cols-2">
+              <div class="rounded-3xl border border-white/10 bg-navy-950/70 p-6">
+                <p class="text-4xl font-black text-emerald">5+</p>
+                <p class="mt-2 text-xs uppercase tracking-[0.3em] text-slate-400">Years in UX/UI</p>
+              </div>
+              <div class="rounded-3xl border border-white/10 bg-navy-950/70 p-6">
+                <p class="text-4xl font-black text-emerald">40+</p>
+                <p class="mt-2 text-xs uppercase tracking-[0.3em] text-slate-400">Shipped Products</p>
+              </div>
+              <div class="rounded-3xl border border-white/10 bg-navy-950/70 p-6">
+                <p class="text-4xl font-black text-emerald">5</p>
+                <p class="mt-2 text-xs uppercase tracking-[0.3em] text-slate-400">Companies Led</p>
+              </div>
+              <div class="rounded-3xl border border-white/10 bg-navy-950/70 p-6">
+                <p class="text-4xl font-black text-emerald">1</p>
+                <p class="mt-2 text-xs uppercase tracking-[0.3em] text-slate-400">Unified Design System</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-6 rounded-3xl border border-white/10 bg-navy-950/70 p-8">
+            <div>
+              <p class="text-xs uppercase tracking-[0.3em] text-emerald/80">Focus Areas</p>
+              <ul class="mt-6 space-y-4 text-slate-300">
+                <li class="flex gap-3">
+                  <span class="mt-1 text-emerald">—</span>
+                  <span>Design Systems & Tokens · Component architecture, theming, documentation</span>
+                </li>
+                <li class="flex gap-3">
+                  <span class="mt-1 text-emerald">—</span>
+                  <span>Enterprise Data Visualization · Dashboards, distribution systems, financial charts</span>
+                </li>
+                <li class="flex gap-3">
+                  <span class="mt-1 text-emerald">—</span>
+                  <span>GenAI Workflow Design · AI-augmented research, ideation, variant generation</span>
+                </li>
+                <li class="flex gap-3">
+                  <span class="mt-1 text-emerald">—</span>
+                  <span>Team Leadership · Mentorship, design critique, hiring</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-xs uppercase tracking-[0.3em] text-emerald/80">Languages</p>
+              <div class="mt-5 flex flex-wrap gap-3">
+                <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.2em] text-slate-200">Vietnamese · Native</span>
+                <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.2em] text-slate-200">English · Professional</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="bg-navy-950 px-6 py-24">
+      <div class="mx-auto max-w-[1200px] space-y-16">
+        <div class="grid gap-10 lg:grid-cols-[360px_1fr] lg:items-start">
+          <div class="space-y-6">
+            <div class="inline-flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-emerald/80">
+              <span class="h-1 w-8 bg-emerald"></span>
+              02 / Experience
+            </div>
+            <h2 class="font-display text-4xl font-black uppercase tracking-[-0.03em] text-white sm:text-5xl">
+              Five years.<br>
+              <span class="text-emerald">Five teams.</span><br>
+              One craft.
+            </h2>
+            <p class="max-w-sm text-slate-400">A vertical trace through Vietnam's most demanding product environments — from newsroom design to cybersecurity tooling.</p>
+          </div>
+
+          <div class="space-y-10">
+            <article class="space-y-4 rounded-3xl border border-white/10 bg-navy-900/80 p-8">
+              <div class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.2em] text-emerald/80">
+                <span>2023 — Present</span>
+                <span class="rounded-full border border-emerald/30 bg-emerald/10 px-3 py-1 text-emerald">Current</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white">CMC Cyber Security</h3>
+              <p class="text-emerald text-sm font-semibold">Product Design Lead</p>
+              <p class="text-slate-300">Leading UX/UI for CMC's cybersecurity product suite. Built the unified design system adopted across four product lines, manage a team of three designers, and integrate GenAI into the research-to-handoff workflow.</p>
+              <div class="flex flex-wrap gap-2 text-xs text-slate-400">
+                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Design System</span>
+                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Team Leadership</span>
+                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Cybersecurity UX</span>
+                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">GenAI Workflow</span>
+              </div>
+            </article>
+
+            <article class="space-y-4 rounded-3xl border border-white/10 bg-navy-900/80 p-8">
+              <div class="text-xs uppercase tracking-[0.2em] text-emerald/80">2021 — 2023</div>
+              <h3 class="text-2xl font-bold text-white">MEEY LAND</h3>
+              <p class="text-emerald text-sm font-semibold">Product Design Lead</p>
+              <p class="text-slate-300">Owned the end-to-end design for Meey Finance — a real-estate digital finance platform spanning mobile and web. Defined the visual language for the consumer-facing investment products and built the component library used by the engineering team.</p>
+              <div class="flex flex-wrap gap-2 text-xs text-slate-400">
+                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Fintech UX</span>
+                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Real Estate</span>
+                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Mobile + Web</span>
+              </div>
+            </article>
+
+            <article class="space-y-4 rounded-3xl border border-white/10 bg-navy-900/80 p-8">
+              <div class="text-xs uppercase tracking-[0.2em] text-emerald/80">2019 — 2021</div>
+              <h3 class="text-2xl font-bold text-white">iCHECK</h3>
+              <p class="text-emerald text-sm font-semibold">Product Designer</p>
+              <p class="text-slate-300">Designed the iCheck DMS and analytics dashboard — a high-density data visualization surface used by FMCG field teams. Also led the QR Check mobile app, an anti-counterfeit verification tool.</p>
+              <div class="flex flex-wrap gap-2 text-xs text-slate-400">
+                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Data Visualization</span>
+                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">DMS</span>
+                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Dashboard</span>
+              </div>
+            </article>
+
+            <article class="space-y-4 rounded-3xl border border-white/10 bg-navy-900/80 p-8">
+              <div class="text-xs uppercase tracking-[0.2em] text-emerald/80">2018 — 2019</div>
+              <h3 class="text-2xl font-bold text-white">BIZFLY.VN</h3>
+              <p class="text-emerald text-sm font-semibold">UI Designer</p>
+              <p class="text-slate-300">Designed cloud-platform admin interfaces and marketing surfaces. First deep exposure to enterprise SaaS patterns — billing flows, server configuration panels, and a documentation portal for Vietnamese SMBs.</p>
+              <div class="flex flex-wrap gap-2 text-xs text-slate-400">
+                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">SaaS UI</span>
+                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Cloud Platform</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="bg-slate-50 px-6 py-24 text-navy-950">
+      <div class="mx-auto max-w-[1200px] space-y-16">
+        <div class="grid gap-10 lg:grid-cols-[360px_1fr] lg:items-end">
+          <div>
+            <div class="mb-5 inline-flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-emerald/80">
+              <span class="h-1 w-8 bg-emerald"></span>
+              03 / Skills
+            </div>
+            <h2 class="font-display text-4xl font-black uppercase tracking-[-0.03em] sm:text-5xl">Toolkit & Craft.</h2>
+          </div>
+          <p class="text-lg leading-8 text-slate-600">The stack I've refined across five companies — a balance of design tooling, code literacy, and creative suite. Every tool below has been used end-to-end on a shipped product.</p>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-3">
+          <div class="rounded-3xl border border-slate-200 bg-white p-8">
+            <div class="mb-8 flex items-center gap-3 text-xs uppercase tracking-[0.24em] text-slate-500">
+              <span class="flex h-6 w-6 items-center justify-center rounded-full border border-emerald text-emerald">•</span>
+              Core Tech
+            </div>
+            <h3 class="mb-8 text-2xl font-bold">Code Literacy</h3>
+            <div class="space-y-6 text-slate-700">
+              <div>
+                <div class="flex justify-between text-sm font-medium"><span>HTML5</span><span>90%</span></div>
+                <div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-200"><div class="h-full w-[90%] rounded-full bg-emerald"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm font-medium"><span>CSS3</span><span>88%</span></div>
+                <div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-200"><div class="h-full w-[88%] rounded-full bg-emerald"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm font-medium"><span>Tailwind CSS</span><span>85%</span></div>
+                <div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-200"><div class="h-full w-[85%] rounded-full bg-emerald"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm font-medium"><span>Responsive Layout</span><span>92%</span></div>
+                <div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-200"><div class="h-full w-[92%] rounded-full bg-emerald"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-3xl border border-slate-200 bg-white p-8">
+            <div class="mb-8 flex items-center gap-3 text-xs uppercase tracking-[0.24em] text-slate-500">
+              <span class="flex h-6 w-6 items-center justify-center rounded-full border border-emerald text-emerald">•</span>
+              Design & UX
+            </div>
+            <h3 class="mb-8 text-2xl font-bold">Design Discipline</h3>
+            <div class="space-y-6 text-slate-700">
+              <div>
+                <div class="flex justify-between text-sm font-medium"><span>Figma</span><span>95%</span></div>
+                <div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-200"><div class="h-full w-[95%] rounded-full bg-emerald"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm font-medium"><span>Material Design</span><span>88%</span></div>
+                <div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-200"><div class="h-full w-[88%] rounded-full bg-emerald"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm font-medium"><span>Lottie Animation</span><span>80%</span></div>
+                <div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-200"><div class="h-full w-[80%] rounded-full bg-emerald"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm font-medium"><span>Prototype</span><span>90%</span></div>
+                <div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-200"><div class="h-full w-[90%] rounded-full bg-emerald"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-3xl border border-slate-200 bg-white p-8">
+            <div class="mb-8 flex items-center gap-3 text-xs uppercase tracking-[0.24em] text-slate-500">
+              <span class="flex h-6 w-6 items-center justify-center rounded-full border border-emerald text-emerald">•</span>
+              Creative Suite
+            </div>
+            <h3 class="mb-8 text-2xl font-bold">Production Craft</h3>
+            <div class="space-y-6 text-slate-700">
+              <div>
+                <div class="flex justify-between text-sm font-medium"><span>After Effects</span><span>85%</span></div>
+                <div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-200"><div class="h-full w-[85%] rounded-full bg-emerald"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm font-medium"><span>Photoshop</span><span>92%</span></div>
+                <div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-200"><div class="h-full w-[92%] rounded-full bg-emerald"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm font-medium"><span>Illustrator</span><span>88%</span></div>
+                <div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-200"><div class="h-full w-[88%] rounded-full bg-emerald"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm font-medium"><span>Premiere</span><span>78%</span></div>
+                <div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-200"><div class="h-full w-[78%] rounded-full bg-emerald"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-[240px_1fr] lg:items-center">
+          <div>
+            <p class="text-xs uppercase tracking-[0.3em] text-emerald/80">Also Working With</p>
+          </div>
+          <div class="flex flex-wrap gap-3 text-xs text-slate-700">
+            <span class="rounded-full border border-slate-200 bg-white/80 px-3 py-2">GenAI Workflows</span>
+            <span class="rounded-full border border-slate-200 bg-white/80 px-3 py-2">Design Tokens</span>
+            <span class="rounded-full border border-slate-200 bg-white/80 px-3 py-2">Storybook</span>
+            <span class="rounded-full border border-slate-200 bg-white/80 px-3 py-2">Notion</span>
+            <span class="rounded-full border border-slate-200 bg-white/80 px-3 py-2">Jira</span>
+            <span class="rounded-full border border-slate-200 bg-white/80 px-3 py-2">Maze</span>
+            <span class="rounded-full border border-slate-200 bg-white/80 px-3 py-2">Hotjar</span>
+            <span class="rounded-full border border-slate-200 bg-white/80 px-3 py-2">Google Analytics</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="works" class="bg-navy-900 px-6 py-24">
+      <div class="mx-auto max-w-[1200px] space-y-16">
+        <div class="grid gap-10 lg:grid-cols-[360px_1fr] lg:items-end">
+          <div>
+            <div class="mb-5 inline-flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-emerald/80">
+              <span class="h-1 w-8 bg-emerald"></span>
+              04 / Featured Works
+            </div>
+            <h2 class="font-display text-4xl font-black uppercase tracking-[-0.03em] sm:text-5xl">Selected Products.</h2>
+          </div>
+          <div class="space-y-6 text-slate-300">
+            <p class="text-lg leading-8">Eleven featured works organized by project folder: fintech, distribution, dashboard, commerce and landing page systems. Click any card to open a modal slideshow of every image in that set.</p>
+            <a href="https://behance.net/megadinh91" target="_blank" class="inline-flex items-center gap-2 text-sm font-medium text-emerald transition hover:text-emerald/80">See full archive on Behance →</a>
+          </div>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+          <div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-navy-950/80 cursor-pointer transition hover:-translate-y-1" role="button" tabindex="0" data-project="meeyFinance">
+            <img src="image/Meeyfinance (6).jpg" alt="Meey Finance" class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent"></div>
+            <div class="relative p-6">
+              <p class="text-xs uppercase tracking-[0.3em] text-emerald/80">Meey Finance</p>
+              <h3 class="mt-3 text-2xl font-bold text-white">Real-estate finance</h3>
+              <p class="mt-2 text-sm text-slate-300">Cross-platform investment toolkit — 8 images.</p>
+            </div>
+          </div>
+
+          <div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-navy-950/80 cursor-pointer transition hover:-translate-y-1" role="button" tabindex="0" data-project="iCheckDMS">
+            <img src="image/icheckDMS (1).jpg" alt="iCheck DMS" class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent"></div>
+            <div class="relative p-6">
+              <p class="text-xs uppercase tracking-[0.3em] text-emerald/80">iCheck DMS</p>
+              <h3 class="mt-3 text-2xl font-bold text-white">Distribution dashboard</h3>
+              <p class="mt-2 text-sm text-slate-300">FMCG operations and analytics — 8 images.</p>
+            </div>
+          </div>
+
+          <div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-navy-950/80 cursor-pointer transition hover:-translate-y-1" role="button" tabindex="0" data-project="iCheckAbout">
+            <img src="image/icheckabout (1).jpg" alt="iCheck About" class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent"></div>
+            <div class="relative p-6">
+              <p class="text-xs uppercase tracking-[0.3em] text-emerald/80">iCheck About</p>
+              <h3 class="mt-3 text-2xl font-bold text-white">Brand story pages</h3>
+              <p class="mt-2 text-sm text-slate-300">Marketing content system — 9 images.</p>
+            </div>
+          </div>
+
+          <div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-navy-950/80 cursor-pointer transition hover:-translate-y-1" role="button" tabindex="0" data-project="iCheckDashboard">
+            <img src="image/icheckdashboard (1).jpg" alt="iCheck Dashboard" class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent"></div>
+            <div class="relative p-6">
+              <p class="text-xs uppercase tracking-[0.3em] text-emerald/80">iCheck Dashboard</p>
+              <h3 class="mt-3 text-2xl font-bold text-white">High-density analytics</h3>
+              <p class="mt-2 text-sm text-slate-300">Dashboard visuals and patterns — 6 images.</p>
+            </div>
+          </div>
+
+          <div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-navy-950/80 cursor-pointer transition hover:-translate-y-1" role="button" tabindex="0" data-project="iCheckVN">
+            <img src="image/icheckvn (1).jpg" alt="iCheck VN" class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent"></div>
+            <div class="relative p-6">
+              <p class="text-xs uppercase tracking-[0.3em] text-emerald/80">iCheck VN</p>
+              <h3 class="mt-3 text-2xl font-bold text-white">Local platform experience</h3>
+              <p class="mt-2 text-sm text-slate-300">Vietnam mobile/web ecosystem — 10 images.</p>
+            </div>
+          </div>
+
+          <div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-navy-950/80 cursor-pointer transition hover:-translate-y-1" role="button" tabindex="0" data-project="QRCheck">
+            <img src="image/QRCheck (1).jpg" alt="QR Check" class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent"></div>
+            <div class="relative p-6">
+              <p class="text-xs uppercase tracking-[0.3em] text-emerald/80">QR Check</p>
+              <h3 class="mt-3 text-2xl font-bold text-white">Verification app</h3>
+              <p class="mt-2 text-sm text-slate-300">Anti-counterfeit mobile UI — 5 images.</p>
+            </div>
+          </div>
+
+          <div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-navy-950/80 cursor-pointer transition hover:-translate-y-1" role="button" tabindex="0" data-project="USExpress">
+            <img src="image/usexpress (1).jpg" alt="USExpress" class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent"></div>
+            <div class="relative p-6">
+              <p class="text-xs uppercase tracking-[0.3em] text-emerald/80">USExpress</p>
+              <h3 class="mt-3 text-2xl font-bold text-white">Cross-border commerce</h3>
+              <p class="mt-2 text-sm text-slate-300">Buy-from-US e-commerce — 10 images.</p>
+            </div>
+          </div>
+
+          <div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-navy-950/80 cursor-pointer transition hover:-translate-y-1" role="button" tabindex="0" data-project="MRDLanding">
+            <img src="image/MRD.jpg" alt="MRD" class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent"></div>
+            <div class="relative p-6">
+              <p class="text-xs uppercase tracking-[0.3em] text-emerald/80">MRD Landing</p>
+              <h3 class="mt-3 text-2xl font-bold text-white">Investment pages</h3>
+              <p class="mt-2 text-sm text-slate-300">Conversion-focused landing page — 1 image.</p>
+            </div>
+          </div>
+
+          <div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-navy-950/80 cursor-pointer transition hover:-translate-y-1" role="button" tabindex="0" data-project="WinningOKRs">
+            <img src="image/WinningOKRs.jpg" alt="Winning OKRs" class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent"></div>
+            <div class="relative p-6">
+              <p class="text-xs uppercase tracking-[0.3em] text-emerald/80">Winning OKRs</p>
+              <h3 class="mt-3 text-2xl font-bold text-white">Workshop campaign</h3>
+              <p class="mt-2 text-sm text-slate-300">Visual identity and landing — 1 image.</p>
+            </div>
+          </div>
+
+          <div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-navy-950/80 cursor-pointer transition hover:-translate-y-1" role="button" tabindex="0" data-project="LandingPageNguoiPhuHop">
+            <img src="image/LandingPageNguoiPhuHop.jpg" alt="Landing Page Người Phù Hợp" class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent"></div>
+            <div class="relative p-6">
+              <p class="text-xs uppercase tracking-[0.3em] text-emerald/80">Landing Page</p>
+              <h3 class="mt-3 text-2xl font-bold text-white">Người Phù Hợp</h3>
+              <p class="mt-2 text-sm text-slate-300">Conversion landing page — 1 image.</p>
+            </div>
+          </div>
+
+          <div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-navy-950/80 cursor-pointer transition hover:-translate-y-1" role="button" tabindex="0" data-project="JohnPortfolio">
+            <img src="image/John (1).jpg" alt="John Portfolio" class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent"></div>
+            <div class="relative p-6">
+              <p class="text-xs uppercase tracking-[0.3em] text-emerald/80">Personal Brand</p>
+              <h3 class="mt-3 text-2xl font-bold text-white">Identity system</h3>
+              <p class="mt-2 text-sm text-slate-300">Portfolio and branding visuals — 6 images.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="gallery-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/80 p-4">
+      <div class="relative w-full max-w-5xl overflow-hidden rounded-[2rem] border border-white/10 bg-navy-950 shadow-2xl">
+        <button id="gallery-close" class="absolute right-4 top-4 z-20 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sm text-white transition hover:bg-white/10">✕</button>
+        <div class="p-6 sm:p-8">
+          <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p class="text-xs uppercase tracking-[0.3em] text-emerald/80">Gallery</p>
+              <h3 id="gallery-title" class="mt-3 text-3xl font-bold text-white sm:text-4xl"></h3>
+            </div>
+            <div id="gallery-counter" class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-slate-300"></div>
+          </div>
+          <div class="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black">
+            <img id="gallery-image" src="" alt="" class="w-full max-h-[80vh] object-contain" />
+          </div>
+          <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:justify-between">
+            <button id="gallery-prev" class="rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm uppercase tracking-[0.18em] text-white transition hover:bg-white/10">Previous</button>
+            <button id="gallery-next" class="rounded-full border border-white/10 bg-emerald px-5 py-3 text-sm uppercase tracking-[0.18em] text-navy-950 transition hover:bg-emerald/90">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="contact" class="bg-navy-900 px-6 py-24">
+      <div class="mx-auto max-w-[1200px] space-y-16">
+        <div class="grid gap-10 lg:grid-cols-[360px_1fr] lg:items-end">
+          <div>
+            <div class="mb-5 inline-flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-emerald/80">
+              <span class="h-1 w-8 bg-emerald"></span>
+              05 / Contact
+            </div>
+            <h2 class="font-display text-4xl font-black uppercase tracking-[-0.03em] sm:text-5xl">Let's build.</h2>
+          </div>
+          <p class="text-lg leading-8 text-slate-300">Open to senior product design and design leadership roles, consulting engagements, and conversations about building Design Systems with GenAI. Response time: 24 hours.</p>
+        </div>
+
+        <div class="grid gap-10 lg:grid-cols-[2fr_1fr]">
+          <form class="space-y-6 rounded-3xl border border-white/10 bg-navy-950/70 p-8">
+            <div class="grid gap-6 md:grid-cols-2">
+              <label class="space-y-2 text-sm text-slate-300">
+                <span class="uppercase tracking-[0.2em] text-slate-500">Your Name</span>
+                <input type="text" placeholder="Jane Doe" class="w-full rounded-2xl border border-white/10 bg-navy-900/60 px-4 py-3 text-white outline-none placeholder:text-slate-500" required>
+              </label>
+              <label class="space-y-2 text-sm text-slate-300">
+                <span class="uppercase tracking-[0.2em] text-slate-500">Email</span>
+                <input type="email" placeholder="jane@company.com" class="w-full rounded-2xl border border-white/10 bg-navy-900/60 px-4 py-3 text-white outline-none placeholder:text-slate-500" required>
+              </label>
+            </div>
+            <label class="space-y-2 text-sm text-slate-300">
+              <span class="uppercase tracking-[0.2em] text-slate-500">Company / Role</span>
+              <input type="text" placeholder="Acme · Head of Product" class="w-full rounded-2xl border border-white/10 bg-navy-900/60 px-4 py-3 text-white outline-none placeholder:text-slate-500">
+            </label>
+            <label class="space-y-2 text-sm text-slate-300">
+              <span class="uppercase tracking-[0.2em] text-slate-500">Brief</span>
+              <textarea rows="4" placeholder="Tell me about the team, the product, and what you're trying to solve." class="w-full resize-none rounded-2xl border border-white/10 bg-navy-900/60 px-4 py-3 text-white outline-none placeholder:text-slate-500"></textarea>
+            </label>
+            <button type="submit" class="inline-flex items-center justify-center rounded-full bg-emerald px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-navy-950 transition hover:bg-emerald/90">Send Message</button>
+          </form>
+
+          <div class="space-y-6 rounded-3xl border border-white/10 bg-navy-950/70 p-8">
+            <div>
+              <p class="mb-4 uppercase tracking-[0.2em] text-emerald/80">Direct Lines</p>
+              <div class="space-y-4 text-slate-300">
+                <a href="mailto:megadinh@gmail.com" class="block rounded-2xl border border-white/10 bg-navy-900/60 px-4 py-4 transition hover:border-emerald hover:text-emerald">megadinh@gmail.com</a>
+                <a href="tel:+84869966206" class="block rounded-2xl border border-white/10 bg-navy-900/60 px-4 py-4 transition hover:border-emerald hover:text-emerald">+84 869 966 206</a>
+                <div class="rounded-2xl border border-white/10 bg-navy-900/60 px-4 py-4">
+                  <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Location</p>
+                  <p class="mt-2 text-slate-200">Hanoi, Vietnam · UTC+7</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class="mb-4 uppercase tracking-[0.2em] text-emerald/80">Portfolios</p>
+              <div class="space-y-3 text-sm text-slate-200">
+                <a href="https://behance.net/megadinh91" target="_blank" class="block rounded-2xl border border-white/10 bg-navy-900/60 px-4 py-4 transition hover:border-emerald hover:text-emerald">Behance</a>
+                <a href="https://dribbble.com/megadinh" target="_blank" class="block rounded-2xl border border-white/10 bg-navy-900/60 px-4 py-4 transition hover:border-emerald hover:text-emerald">Dribbble</a>
+              </div>
+            </div>
+            <div class="flex gap-4 rounded-3xl border border-white/10 bg-white/5 p-4">
+              <div class="aspect-square w-24 rounded-2xl bg-white p-2"></div>
+              <div>
+                <p class="uppercase tracking-[0.2em] text-emerald/80">Scan to Save</p>
+                <p class="mt-2 text-sm text-slate-300">Quick-add my contact to your phone.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-navy-950 px-6 py-14 text-slate-400">
+    <div class="mx-auto max-w-[1200px] space-y-12">
+      <div class="overflow-hidden">
+        <h2 class="text-5xl font-black uppercase tracking-[-0.05em] text-white sm:text-6xl">Mai Van Dinh</h2>
+      </div>
+      <div class="grid gap-10 md:grid-cols-3">
+        <div class="space-y-2">
+          <p class="uppercase tracking-[0.2em] text-slate-500">© 2025</p>
+          <p class="text-sm leading-6">Mai Van Dinh — Product Design Lead<br>Designed & coded with intent.</p>
+        </div>
+        <div class="space-y-2">
+          <p class="uppercase tracking-[0.2em] text-slate-500">Navigate</p>
+          <div class="flex flex-wrap gap-3 text-sm text-slate-300">
+            <a href="#about" class="transition hover:text-emerald">About</a>
+            <a href="#experience" class="transition hover:text-emerald">Experience</a>
+            <a href="#skills" class="transition hover:text-emerald">Skills</a>
+            <a href="#works" class="transition hover:text-emerald">Works</a>
+            <a href="#contact" class="transition hover:text-emerald">Contact</a>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <p class="uppercase tracking-[0.2em] text-slate-500">Elsewhere</p>
+          <div class="flex flex-wrap gap-3 text-sm text-slate-300">
+            <a href="https://behance.net/megadinh91" target="_blank" class="transition hover:text-emerald">Behance ↗</a>
+            <a href="https://dribbble.com/megadinh" target="_blank" class="transition hover:text-emerald">Dribbble ↗</a>
+            <a href="mailto:megadinh@gmail.com" class="transition hover:text-emerald">Email ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-slate-500">
+        <span>v1.0 · Built with Tailwind · Inter</span>
+        <span class="inline-flex items-center gap-2 text-emerald"><span class="h-2 w-2 rounded-full bg-emerald"></span>Available for new projects</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const galleryData = {
+      meeyFinance: {
+        title: 'Meey Finance',
+        images: [
+          'image/Meeyfinance (1).jpg',
+          'image/Meeyfinance (2).jpg',
+          'image/Meeyfinance (3).jpg',
+          'image/Meeyfinance (4).jpg',
+          'image/Meeyfinance (5).jpg',
+          'image/Meeyfinance (6).jpg',
+          'image/Meeyfinance (7).jpg',
+          'image/Meeyfinance (8).jpg'
+        ]
+      },
+      iCheckDMS: {
+        title: 'iCheck DMS',
+        images: [
+          'image/icheckDMS (1).jpg',
+          'image/icheckDMS (2).jpg',
+          'image/icheckDMS (3).jpg',
+          'image/icheckDMS (4).jpg',
+          'image/icheckDMS (5).jpg',
+          'image/icheckDMS (6).jpg',
+          'image/icheckDMS (7).jpg',
+          'image/icheckDMS (8).jpg'
+        ]
+      },
+      iCheckAbout: {
+        title: 'iCheck About',
+        images: [
+          'image/icheckabout (1).jpg',
+          'image/icheckabout (2).jpg',
+          'image/icheckabout (3).jpg',
+          'image/icheckabout (4).jpg',
+          'image/icheckabout (5).jpg',
+          'image/icheckabout (6).jpg',
+          'image/icheckabout (7).jpg',
+          'image/icheckabout (8).jpg',
+          'image/icheckabout (9).jpg'
+        ]
+      },
+      iCheckDashboard: {
+        title: 'iCheck Dashboard',
+        images: [
+          'image/icheckdashboard (1).jpg',
+          'image/icheckdashboard (2).jpg',
+          'image/icheckdashboard (3).jpg',
+          'image/icheckdashboard (4).jpg',
+          'image/icheckdashboard (5).jpg',
+          'image/icheckdashboard (6).jpg'
+        ]
+      },
+      iCheckVN: {
+        title: 'iCheck VN',
+        images: [
+          'image/icheckvn (1).jpg',
+          'image/icheckvn (2).jpg',
+          'image/icheckvn (3).jpg',
+          'image/icheckvn (4).jpg',
+          'image/icheckvn (5).jpg',
+          'image/icheckvn (6).jpg',
+          'image/icheckvn (7).jpg',
+          'image/icheckvn (8).jpg',
+          'image/icheckvn (9).jpg',
+          'image/icheckvn (10).jpg'
+        ]
+      },
+      QRCheck: {
+        title: 'QR Check',
+        images: [
+          'image/QRCheck (1).jpg',
+          'image/QRCheck (2).jpg',
+          'image/QRCheck (3).jpg',
+          'image/QRCheck (4).jpg',
+          'image/QRCheck (5).jpg'
+        ]
+      },
+      USExpress: {
+        title: 'USExpress',
+        images: [
+          'image/usexpress (1).jpg',
+          'image/usexpress (2).jpg',
+          'image/usexpress (3).jpg',
+          'image/usexpress (4).jpg',
+          'image/usexpress (5).jpg',
+          'image/usexpress (6).jpg',
+          'image/usexpress (7).jpg',
+          'image/usexpress (8).jpg',
+          'image/usexpress (9).jpg',
+          'image/usexpress (10).jpg'
+        ]
+      },
+      MRDLanding: {
+        title: 'MRD Landing',
+        images: [
+          'image/MRD.jpg'
+        ]
+      },
+      WinningOKRs: {
+        title: 'Winning OKRs',
+        images: [
+          'image/WinningOKRs.jpg'
+        ]
+      },
+      LandingPageNguoiPhuHop: {
+        title: 'Landing Page Người Phù Hợp',
+        images: [
+          'image/LandingPageNguoiPhuHop.jpg'
+        ]
+      },
+      JohnPortfolio: {
+        title: 'John Portfolio',
+        images: [
+          'image/John (1).jpg',
+          'image/John (2).jpg',
+          'image/John (3).jpg',
+          'image/John (4).jpg',
+          'image/John (5).jpg',
+          'image/John (6).jpg'
+        ]
+      }
+    };
+
+    const modal = document.getElementById('gallery-modal');
+    const galleryTitle = document.getElementById('gallery-title');
+    const galleryImage = document.getElementById('gallery-image');
+    const galleryCounter = document.getElementById('gallery-counter');
+    const galleryPrev = document.getElementById('gallery-prev');
+    const galleryNext = document.getElementById('gallery-next');
+    const galleryClose = document.getElementById('gallery-close');
+
+    let currentProject = null;
+    let currentIndex = 0;
+
+    function updateGallery() {
+      const project = galleryData[currentProject];
+      if (!project) return;
+      galleryImage.src = project.images[currentIndex];
+      galleryImage.alt = `${project.title} slide ${currentIndex + 1}`;
+      galleryTitle.textContent = project.title;
+      galleryCounter.textContent = `${currentIndex + 1} / ${project.images.length}`;
+    }
+
+    function openGallery(projectKey) {
+      currentProject = projectKey;
+      currentIndex = 0;
+      updateGallery();
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeGallery() {
+      modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function changeSlide(direction) {
+      const project = galleryData[currentProject];
+      if (!project) return;
+      currentIndex = (currentIndex + direction + project.images.length) % project.images.length;
+      updateGallery();
+    }
+
+    document.querySelectorAll('[data-project]').forEach(item => {
+      item.addEventListener('click', () => openGallery(item.dataset.project));
+      item.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openGallery(item.dataset.project);
+        }
+      });
+    });
+
+    galleryPrev.addEventListener('click', () => changeSlide(-1));
+    galleryNext.addEventListener('click', () => changeSlide(1));
+    galleryClose.addEventListener('click', closeGallery);
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeGallery();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (modal.classList.contains('hidden')) return;
+      if (event.key === 'Escape') closeGallery();
+      if (event.key === 'ArrowRight') changeSlide(1);
+      if (event.key === 'ArrowLeft') changeSlide(-1);
+    });
+  </script>
