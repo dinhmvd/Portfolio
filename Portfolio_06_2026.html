@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Mai Van Dinh — Product Design Lead (UX/UI)</title>
+<meta name="description" content="Product Design Lead with 5+ years of UX/UI experience. Expert in design systems, team leadership, and GenAI workflows. Based in Hanoi, Vietnam.">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Fonts: Inter + JetBrains Mono -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- GSAP + ScrollTrigger -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+<!-- Lenis smooth scroll -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.13/dist/lenis.min.js"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: {
+            950: '#061A33',
+            900: '#0A2544',
+            800: '#0F2D52',
+            700: '#13355F',
+            600: '#1A4070',
+          },
+          emerald: {
+            DEFAULT: '#33b44a',
+            bright: '#4FCC66',
+            dim: '#218032',
+            dark: '#1A6629',
+          },
+          tech: {
+            gray: '#F5FAFF',
+            soft: '#B8C5D6',
+            mute: '#6B7A8F',
+          }
+        },
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root {
+    --bg: #0A2544;
+    --bg-deep: #061A33;
+    --bg-elev: #0F2D52;
+    --surface: #13355F;
+    --text: #FFFFFF;
+    --text-soft: #B8C5D6;
+    --text-mute: #6B7A8F;
+    --accent: #33b44a;
+    --accent-bright: #4FCC66;
+    --accent-dim: #218032;
+    --line: rgba(255, 255, 255, 0.08);
+    --line-emerald: rgba(51, 180, 74, 0.3);
+    --ease-quiet: cubic-bezier(.22, 1, .36, 1);
+    --ease-precise: cubic-bezier(.4, 0, .2, 1);
+    --ease-emphasis: cubic-bezier(.16, 1, .3, 1);
+  }
+
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  body { min-height: 100vh; }
+
+  /* Lenis */
+  html.lenis { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: hidden; }
+
+  /* Noise overlay */
+  .noise-overlay {
+    position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.6'/></svg>");
+    animation: noise 20s linear infinite;
+    mix-blend-mode: overlay;
+  }
+  @keyframes noise {
+    0%,100% { transform: translate(0,0); }
+    20%     { transform: translate(-10%, 5%); }
+    50%     { transform: translate(-10%, 5%); }
+    80%     { transform: translate(-15%, 0); }
+  }
+
+  /* Grid background */
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  /* Typography */
+  .font-display { font-family: 'Inter', sans-serif; letter-spacing: -0.02em; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .eyebrow-soft {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--text-mute);
+  }
+
+  /* Line mask rise */
+  .line-mask { display: block; overflow: hidden; }
+  .line-mask .inner {
+    display: block;
+    transform: translateY(110%);
+    transition: transform 1200ms var(--ease-quiet);
+    transition-delay: calc(var(--i, 0) * 120ms);
+  }
+  .is-in .line-mask .inner { transform: translateY(0); }
+
+  /* Fade up */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 900ms var(--ease-quiet), transform 900ms var(--ease-quiet);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+  .is-in .reveal { opacity: 1; transform: none; }
+
+  /* Directional clip reveal */
+  .clip-reveal {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1300ms cubic-bezier(.65,0,.35,1);
+  }
+  .clip-reveal.dir-tb { clip-path: inset(0 0 100% 0); }
+  .clip-reveal.dir-bt { clip-path: inset(100% 0 0 0); }
+  .clip-reveal.dir-lr { clip-path: inset(0 0 0 100%); }
+  .is-in .clip-reveal { clip-path: inset(0 0 0 0); }
+
+  /* Card hover overlay */
+  .media-card { position: relative; overflow: hidden; }
+  .media-card img {
+    transition: transform 1000ms var(--ease-quiet), filter 600ms var(--ease-quiet);
+    filter: grayscale(20%) brightness(0.85);
+  }
+  .media-card:hover img { transform: scale(1.05); filter: grayscale(0%) brightness(1); }
+  .media-card::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,37,68,0) 40%, rgba(10,37,68,0.85) 100%);
+    opacity: 0.7; transition: opacity 500ms var(--ease-quiet);
+    pointer-events: none;
+  }
+  .media-card:hover::after { opacity: 1; }
+  .media-card .overlay-content {
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; align-items: flex-end; padding: 2rem;
+    pointer-events: none;
+  }
+  .media-card .overlay-arrow {
+    position: absolute; top: 1.5rem; right: 1.5rem; z-index: 3;
+    width: 44px; height: 44px;
+    border: 1px solid var(--line);
+    background: rgba(10, 37, 68, 0.6);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    transform: translate(8px, -8px); opacity: 0;
+    transition: transform 500ms var(--ease-quiet), opacity 500ms var(--ease-quiet);
+  }
+  .media-card:hover .overlay-arrow { transform: translate(0, 0); opacity: 1; }
+
+  /* Custom cursor */
+  @media (pointer: fine) {
+    .cursor-dot {
+      position: fixed; top: 0; left: 0; width: 8px; height: 8px;
+      background: var(--accent); border-radius: 50%;
+      pointer-events: none; z-index: 10000;
+      transform: translate(-50%, -50%);
+      transition: width 300ms var(--ease-quiet), height 300ms var(--ease-quiet), background 300ms var(--ease-quiet);
+      mix-blend-mode: difference;
+    }
+    .cursor-dot.is-hover { width: 36px; height: 36px; background: rgba(51, 180, 74, 0.3); }
+    body { cursor: none; }
+    a, button, [data-hover] { cursor: none; }
+  }
+  @media (pointer: coarse) { .cursor-dot { display: none; } }
+
+  /* Nav */
+  .nav-link {
+    position: relative;
+    font-size: 13px; font-weight: 500;
+    color: var(--text-soft);
+    transition: color 300ms var(--ease-quiet);
+  }
+  .nav-link::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1px; background: var(--accent);
+    transition: width 400ms var(--ease-quiet);
+  }
+  .nav-link:hover { color: var(--text); }
+  .nav-link:hover::after { width: 100%; }
+
+  /* Hero layers */
+  .hero-portrait {
+    filter: grayscale(30%) contrast(1.05);
+    transition: filter 800ms var(--ease-quiet);
+  }
+  .hero-portrait:hover { filter: grayscale(0%) contrast(1.1); }
+
+  /* Timeline node */
+  .timeline-node {
+    position: relative; padding-left: 3rem;
+  }
+  .timeline-node::before {
+    content: ''; position: absolute; left: 0; top: 8px;
+    width: 14px; height: 14px;
+    background: var(--bg);
+    border: 2px solid var(--text-mute);
+    border-radius: 50%;
+    transition: all 400ms var(--ease-quiet);
+  }
+  .timeline-node::after {
+    content: ''; position: absolute; left: 6px; top: 22px;
+    width: 2px; height: calc(100% + 2rem);
+    background: var(--line);
+  }
+  .timeline-node:last-child::after { display: none; }
+  .timeline-node.is-current::before {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 6px rgba(51, 180, 74, 0.15);
+  }
+  .timeline-node:hover::before {
+    border-color: var(--accent);
+  }
+
+  /* Skill bar */
+  .skill-bar {
+    position: relative; height: 4px;
+    background: var(--line); overflow: hidden;
+  }
+  .skill-bar .fill {
+    position: absolute; left: 0; top: 0; height: 100%;
+    background: var(--accent);
+    width: 0;
+    transition: width 1400ms var(--ease-emphasis);
+    transition-delay: calc(var(--i, 0) * 100ms);
+  }
+  .is-in .skill-bar .fill { width: var(--w, 80%); }
+
+  /* Tag */
+  .tag {
+    display: inline-flex; align-items: center;
+    padding: 0.4rem 0.85rem;
+    font-size: 11px; font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+    color: var(--text-soft);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--line);
+    transition: all 300ms var(--ease-quiet);
+  }
+  .tag:hover {
+    color: var(--accent);
+    border-color: var(--line-emerald);
+    background: rgba(51, 180, 74, 0.05);
+  }
+
+  /* Form */
+  .form-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    padding: 1rem 0;
+    color: var(--text);
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 400ms var(--ease-quiet);
+  }
+  .form-input::placeholder { color: var(--text-mute); }
+  .form-input:focus { outline: none; border-color: var(--accent); }
+  .form-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-mute);
+  }
+
+  /* Button */
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    padding: 1rem 1.75rem;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    transition: all 400ms var(--ease-quiet);
+    position: relative; overflow: hidden;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  .btn-primary:hover {
+    background: var(--accent-bright);
+    transform: translateY(-2px);
+  }
+  .btn-ghost {
+    border: 1px solid var(--line);
+    color: var(--text);
+  }
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Section transitions */
+  section { position: relative; }
+
+  /* Marquee */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    display: flex; width: max-content;
+    animation: marquee 40s linear infinite;
+  }
+
+  /* Selection */
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-deep); }
+  ::-webkit-scrollbar-thumb { background: var(--navy-700); }
+
+  /* Mobile menu */
+  .mobile-menu {
+    transform: translateY(-100%);
+    transition: transform 600ms var(--ease-quiet);
+  }
+  .mobile-menu.is-open { transform: translateY(0); }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+    .line-mask .inner { transform: none; }
+    .clip-reveal { clip-path: inset(0); }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+
+<body class="bg-navy-900 text-white antialiased">
+
+<!-- Noise overlay -->
+<div class="noise-overlay"></div>
+
+<!-- Custom cursor -->
+<div class="cursor-dot" id="cursor"></div>
+
+<!-- ============ NAVIGATION ============ -->
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="nav">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#hero" class="flex items-center gap-2 group" data-hover>
+      <span class="w-8 h-8 border border-emerald flex items-center justify-center text-emerald font-mono text-xs font-bold transition-all duration-300 group-hover:bg-emerald group-hover:text-navy-900">M</span>
+      <span class="font-display font-bold text-sm tracking-tight">MAI VAN DINH</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-10">
+      <a href="#about" class="nav-link" data-hover>About</a>
+      <a href="#experience" class="nav-link" data-hover>Experience</a>
+      <a href="#skills" class="nav-link" data-hover>Skills</a>
+      <a href="#works" class="nav-link" data-hover>Works</a>
+      <a href="#contact" class="nav-link" data-hover>Contact</a>
+    </nav>
+
+    <!-- CTA + Mobile toggle -->
+    <div class="flex items-center gap-4">
+      <a href="#contact" class="hidden md:inline-flex btn btn-ghost py-2.5 px-5 text-xs" data-hover>
+        Let's Talk
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8m0 0L7 3m3 3L7 9" stroke="currentColor" stroke-width="1.5"/></svg>
+      </a>
+      <button class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5" id="menu-toggle" aria-label="Menu">
+        <span class="w-5 h-px bg-white transition-all duration-300"></span>
+        <span class="w-5 h-px bg-white transition-all duration-300"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu absolute top-full left-0 right-0 bg-navy-950 border-t border-white/5 md:hidden" id="mobile-menu">
+    <nav class="flex flex-col px-6 py-8 gap-6">
+      <a href="#about" class="nav-link text-lg">About</a>
+      <a href="#experience" class="nav-link text-lg">Experience</a>
+      <a href="#skills" class="nav-link text-lg">Skills</a>
+      <a href="#works" class="nav-link text-lg">Works</a>
+      <a href="#contact" class="nav-link text-lg">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO (PINNED) ============ -->
+<section id="hero" class="hero-sticky relative h-screen min-h-[700px] overflow-hidden">
+  <!-- Background layers -->
+  <div class="absolute inset-0 grid-bg opacity-40" id="hero-bg"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-navy-950/30 via-transparent to-navy-900"></div>
+
+  <!-- Decorative big text -->
+  <div class="absolute -bottom-8 left-0 right-0 overflow-hidden pointer-events-none" id="hero-bigtext">
+    <h2 class="font-display font-black text-[20vw] leading-none tracking-tighter text-white/[0.03] whitespace-nowrap">DESIGN LEAD</h2>
+  </div>
+
+  <!-- Main content -->
+  <div class="relative h-full max-w-[1400px] mx-auto px-6 lg:px-10 flex flex-col justify-center pt-24">
+    <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+      <!-- Left: text -->
+      <div class="lg:col-span-7 order-2 lg:order-1" id="hero-text">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="w-2 h-2 rounded-full bg-emerald animate-pulse"></span>
+          <span class="eyebrow">Available for Senior Roles · Hanoi, VN</span>
+        </div>
+
+        <h1 class="font-display font-black uppercase leading-[0.88] tracking-[-0.03em] text-[14vw] lg:text-[7.5vw]" id="hero-name">
+          <span class="line-mask"><span class="inner" style="--i:0">Mai Van</span></span>
+          <span class="line-mask"><span class="inner" style="--i:1">Dinh<span class="text-emerald">.</span></span></span>
+        </h1>
+
+        <div class="mt-8 max-w-xl">
+          <p class="text-lg lg:text-xl text-tech-soft leading-relaxed font-light reveal" style="--i:3">
+            Product Design Lead with <span class="text-white font-medium">5+ years</span> shipping UX/UI for cybersecurity, real estate, and enterprise platforms. Building unified Design Systems and GenAI-assisted workflows for teams that ship fast.
+          </p>
+        </div>
+
+        <div class="mt-10 flex flex-wrap items-center gap-4 reveal" style="--i:4">
+          <a href="https://behance.net/megadinh91" target="_blank" class="btn btn-primary" data-hover>
+            View Behance
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3m0 0H4m7 0v7" stroke="currentColor" stroke-width="1.5"/></svg>
+          </a>
+          <a href="https://dribbble.com/megadinh" target="_blank" class="btn btn-ghost" data-hover>
+            Dribbble Shots
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3m0 0H4m7 0v7" stroke="currentColor" stroke-width="1.5"/></svg>
+          </a>
+        </div>
+
+        <!-- Meta -->
+        <div class="mt-12 flex flex-wrap gap-x-10 gap-y-4 reveal" style="--i:5">
+          <div>
+            <div class="eyebrow-soft mb-1">Email</div>
+            <a href="mailto:megadinh@gmail.com" class="text-sm hover:text-emerald transition-colors" data-hover>megadinh@gmail.com</a>
+          </div>
+          <div>
+            <div class="eyebrow-soft mb-1">Phone</div>
+            <a href="tel:+84869966206" class="text-sm hover:text-emerald transition-colors" data-hover>+84 869 966 206</a>
+          </div>
+          <div>
+            <div class="eyebrow-soft mb-1">Based In</div>
+            <span class="text-sm">Hanoi, Vietnam</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: portrait -->
+      <div class="lg:col-span-5 order-1 lg:order-2" id="hero-portrait-wrap">
+        <div class="relative aspect-[4/5] max-w-md mx-auto">
+          <!-- Frame -->
+          <div class="absolute -inset-2 border border-white/10" id="portrait-frame"></div>
+          <!-- Image -->
+          <div class="relative w-full h-full overflow-hidden bg-navy-800">
+            <img src="https://picsum.photos/seed/mai-portrait-designer/800/1000" alt="Mai Van Dinh portrait" class="hero-portrait w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 via-transparent to-transparent"></div>
+          </div>
+          <!-- Caption -->
+          <div class="absolute -bottom-6 -right-4 lg:-right-8 bg-navy-900 border border-white/10 px-5 py-3">
+            <div class="eyebrow-soft mb-0.5">Currently</div>
+            <div class="text-sm font-medium">Product Design Lead</div>
+            <div class="text-xs text-emerald">@ CMC Cyber Security</div>
+          </div>
+          <!-- Corner accents -->
+          <div class="absolute top-0 left-0 w-6 h-6 border-t border-l border-emerald"></div>
+          <div class="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-emerald"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10" id="hero-scroll-indicator">
+    <span class="eyebrow-soft">Scroll</span>
+    <div class="w-px h-12 bg-gradient-to-b from-emerald to-transparent"></div>
+  </div>
+</section>
+
+<!-- ============ MANIFESTO / INTRO ============ -->
+<section id="about" class="relative bg-navy-900 z-10 pt-32 pb-24 lg:pt-48 lg:pb-32">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+
+    <!-- Section header -->
+    <div class="grid lg:grid-cols-12 gap-12 mb-20 lg:mb-32">
+      <div class="lg:col-span-4">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-8 h-px bg-emerald"></span>
+          <span class="eyebrow">01 / About</span>
+        </div>
+        <div class="eyebrow-soft">Philosophy</div>
+      </div>
+      <div class="lg:col-span-8" data-reveal>
+        <h2 class="font-display font-light text-3xl lg:text-5xl leading-[1.15] tracking-[-0.01em]">
+          <span class="line-mask"><span class="inner" style="--i:0">I design systems that scale —</span></span>
+          <span class="line-mask"><span class="inner" style="--i:1">not just screens that ship.</span></span>
+          <span class="line-mask"><span class="inner" style="--i:2"><em class="text-emerald not-italic font-normal">Every component, every token,</em></span></span>
+          <span class="line-mask"><span class="inner" style="--i:3"><em class="text-emerald not-italic font-normal">every workflow is a decision</em></span></span>
+          <span class="line-mask"><span class="inner" style="--i:4">about how a team will work tomorrow.</span></span>
+        </h2>
+      </div>
+    </div>
+
+    <!-- Bio grid -->
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
+      <!-- Left: bio text -->
+      <div class="lg:col-span-7 space-y-6" data-reveal>
+        <p class="text-lg leading-relaxed text-tech-soft">
+          Over the past five years I've moved from graphic design at VNExpress — Vietnam's largest newsroom — through cloud UI at Bizfly, product design at iCheck, and design leadership at Meey Land. Today I lead product design at <span class="text-white font-medium">CMC Cyber Security</span>, where I'm responsible for the UX of cybersecurity tooling used by enterprise clients across Vietnam.
+        </p>
+        <p class="text-lg leading-relaxed text-tech-soft">
+          My work sits at the intersection of three disciplines: <span class="text-white">systems thinking</span> (I build Design Systems that other teams actually want to adopt), <span class="text-white">data-heavy interfaces</span> (dashboards, distribution management, financial products), and <span class="text-white">GenAI-augmented workflow</span> — using AI to compress research, ideation, and variant generation without sacrificing craft.
+        </p>
+        <p class="text-lg leading-relaxed text-tech-soft">
+          I lead small design teams the same way I lead a component library: clear ownership, documented decisions, and a bias toward shipping over perfecting.
+        </p>
+
+        <!-- Quick facts -->
+        <div class="grid grid-cols-2 gap-6 pt-8 border-t border-white/5">
+          <div>
+            <div class="font-display font-bold text-4xl text-emerald">5+</div>
+            <div class="eyebrow-soft mt-1">Years in UX/UI</div>
+          </div>
+          <div>
+            <div class="font-display font-bold text-4xl text-emerald">40+</div>
+            <div class="eyebrow-soft mt-1">Shipped Products</div>
+          </div>
+          <div>
+            <div class="font-display font-bold text-4xl text-emerald">5</div>
+            <div class="eyebrow-soft mt-1">Companies Led</div>
+          </div>
+          <div>
+            <div class="font-display font-bold text-4xl text-emerald">1</div>
+            <div class="eyebrow-soft mt-1">Unified Design System</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: side card -->
+      <div class="lg:col-span-5">
+        <div class="sticky top-32 space-y-6" data-reveal>
+          <!-- Card 1: focus areas -->
+          <div class="border border-white/10 p-8 bg-navy-800/40">
+            <div class="eyebrow mb-6">Focus Areas</div>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <span class="text-emerald mt-1">—</span>
+                <div>
+                  <div class="text-sm font-medium">Design Systems & Tokens</div>
+                  <div class="text-xs text-tech-mute mt-0.5">Component architecture, theming, documentation</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-emerald mt-1">—</span>
+                <div>
+                  <div class="text-sm font-medium">Enterprise Data Visualization</div>
+                  <div class="text-xs text-tech-mute mt-0.5">Dashboards, distribution systems, financial charts</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-emerald mt-1">—</span>
+                <div>
+                  <div class="text-sm font-medium">GenAI Workflow Design</div>
+                  <div class="text-xs text-tech-mute mt-0.5">AI-augmented research, ideation, variant generation</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-emerald mt-1">—</span>
+                <div>
+                  <div class="text-sm font-medium">Team Leadership</div>
+                  <div class="text-xs text-tech-mute mt-0.5">Mentorship, design critique, hiring</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Card 2: languages -->
+          <div class="border border-white/10 p-8 bg-navy-800/40">
+            <div class="eyebrow mb-6">Languages</div>
+            <div class="flex flex-wrap gap-3">
+              <span class="tag">Vietnamese · Native</span>
+              <span class="tag">English · Professional</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE TIMELINE ============ -->
+<section id="experience" class="relative bg-navy-950 py-32 lg:py-40 border-t border-white/5">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+
+    <!-- Section header -->
+    <div class="grid lg:grid-cols-12 gap-12 mb-20">
+      <div class="lg:col-span-4">
+        <div class="sticky top-32">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-8 h-px bg-emerald"></span>
+            <span class="eyebrow">02 / Experience</span>
+          </div>
+          <h2 class="font-display font-black uppercase text-4xl lg:text-6xl leading-[0.9] tracking-[-0.02em] mb-6">
+            Five years.<br>
+            <span class="text-emerald">Five teams.</span><br>
+            One craft.
+          </h2>
+          <p class="text-tech-soft text-base leading-relaxed max-w-sm">
+            A vertical trace through Vietnam's most demanding product environments — from newsroom design to cybersecurity tooling.
+          </p>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="lg:col-span-8" data-reveal>
+        <div class="space-y-12">
+
+          <!-- Item 1: CMC -->
+          <article class="timeline-node is-current reveal" style="--i:0">
+            <div class="flex flex-wrap items-baseline gap-3 mb-2">
+              <span class="eyebrow">2023 — Present</span>
+              <span class="tag !text-emerald !border-emerald/30 !bg-emerald/5">Current</span>
+            </div>
+            <h3 class="font-display font-bold text-2xl lg:text-3xl mb-1">CMC Cyber Security</h3>
+            <div class="text-emerald text-sm font-medium mb-4">Product Design Lead</div>
+            <p class="text-tech-soft leading-relaxed mb-5 max-w-2xl">
+              Leading UX/UI for CMC's cybersecurity product suite. Built the unified Design System adopted across four product lines, manage a team of three designers, and integrate GenAI into the research-to-handoff workflow.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">Design System</span>
+              <span class="tag">Team Leadership</span>
+              <span class="tag">Cybersecurity UX</span>
+              <span class="tag">GenAI Workflow</span>
+            </div>
+          </article>
+
+          <!-- Item 2: MEEY LAND -->
+          <article class="timeline-node reveal" style="--i:1">
+            <div class="flex flex-wrap items-baseline gap-3 mb-2">
+              <span class="eyebrow">2021 — 2023</span>
+            </div>
+            <h3 class="font-display font-bold text-2xl lg:text-3xl mb-1">MEEY LAND</h3>
+            <div class="text-emerald text-sm font-medium mb-4">Product Design Lead</div>
+            <p class="text-tech-soft leading-relaxed mb-5 max-w-2xl">
+              Owned the end-to-end design for Meey Finance — a real-estate digital finance platform spanning mobile and web. Defined the visual language for the consumer-facing investment products and built the component library used by the engineering team.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">Fintech UX</span>
+              <span class="tag">Real Estate</span>
+              <span class="tag">Mobile + Web</span>
+              <span class="tag">Component Library</span>
+            </div>
+          </article>
+
+          <!-- Item 3: iCHECK -->
+          <article class="timeline-node reveal" style="--i:2">
+            <div class="flex flex-wrap items-baseline gap-3 mb-2">
+              <span class="eyebrow">2019 — 2021</span>
+            </div>
+            <h3 class="font-display font-bold text-2xl lg:text-3xl mb-1">iCHECK</h3>
+            <div class="text-emerald text-sm font-medium mb-4">Product Designer</div>
+            <p class="text-tech-soft leading-relaxed mb-5 max-w-2xl">
+              Designed the iCheck DMS (Distribution Management System) and its analytics dashboard — a high-density data visualization surface used by FMCG field teams. Also led the QR Check mobile app, an anti-counterfeit verification tool.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">Data Visualization</span>
+              <span class="tag">DMS</span>
+              <span class="tag">Mobile App</span>
+              <span class="tag">Dashboard</span>
+            </div>
+          </article>
+
+          <!-- Item 4: BIZFLY -->
+          <article class="timeline-node reveal" style="--i:3">
+            <div class="flex flex-wrap items-baseline gap-3 mb-2">
+              <span class="eyebrow">2018 — 2019</span>
+            </div>
+            <h3 class="font-display font-bold text-2xl lg:text-3xl mb-1">BIZFLY.VN</h3>
+            <div class="text-emerald text-sm font-medium mb-4">UI Designer</div>
+            <p class="text-tech-soft leading-relaxed mb-5 max-w-2xl">
+              Designed cloud-platform admin interfaces and marketing surfaces. First deep exposure to enterprise SaaS patterns — billing flows, server configuration panels, and the documentation portal that served thousands of Vietnamese SMBs.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">SaaS UI</span>
+              <span class="tag">Cloud Platform</span>
+              <span class="tag">Admin Console</span>
+            </div>
+          </article>
+
+          <!-- Item 5: VNEXPRESS -->
+          <article class="timeline-node reveal" style="--i:4">
+            <div class="flex flex-wrap items-baseline gap-3 mb-2">
+              <span class="eyebrow">2017 — 2018</span>
+            </div>
+            <h3 class="font-display font-bold text-2xl lg:text-3xl mb-1">VNEXPRESS</h3>
+            <div class="text-emerald text-sm font-medium mb-4">Graphic & UI Designer</div>
+            <p class="text-tech-soft leading-relaxed mb-5 max-w-2xl">
+              Vietnam's largest online newsroom. Designed editorial graphics, interactive features, and special-project landing pages under daily deadline pressure. Where I learned that design is journalism — clarity first, decoration never.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">Editorial Design</span>
+              <span class="tag">Interactive Features</span>
+              <span class="tag">Daily Deadline</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS & TOOLKIT (LIGHT SECTION) ============ -->
+<section id="skills" class="relative bg-tech-gray text-navy-900 py-32 lg:py-40">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+
+    <!-- Section header -->
+    <div class="grid lg:grid-cols-12 gap-12 mb-20">
+      <div class="lg:col-span-5">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-8 h-px bg-emerald-dim"></span>
+          <span class="eyebrow !text-emerald-dim">03 / Skills</span>
+        </div>
+        <h2 class="font-display font-black uppercase text-4xl lg:text-6xl leading-[0.9] tracking-[-0.02em]">
+          Toolkit &<br>
+          <span class="text-emerald-dim">Craft.</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-7 lg:pt-8" data-reveal>
+        <p class="text-lg text-navy-900/70 leading-relaxed max-w-xl">
+          The stack I've refined across five companies — a balance of design tooling, code literacy, and creative suite. Every tool below has been used end-to-end on a shipped product.
+        </p>
+      </div>
+    </div>
+
+    <!-- Skills grid -->
+    <div class="grid lg:grid-cols-3 gap-6 lg:gap-8" data-reveal>
+
+      <!-- Col 1: Core Tech -->
+      <div class="bg-white border border-navy-900/10 p-8 lg:p-10">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="w-6 h-6 border border-emerald-dim flex items-center justify-center">
+            <span class="w-2 h-2 bg-emerald-dim"></span>
+          </span>
+          <span class="font-mono text-xs uppercase tracking-widest text-navy-900/50">A / Core Tech</span>
+        </div>
+        <h3 class="font-display font-bold text-xl mb-8">Code Literacy</h3>
+
+        <div class="space-y-6">
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <span class="text-sm font-medium">HTML5</span>
+              <span class="font-mono text-xs text-navy-900/50">90%</span>
+            </div>
+            <div class="skill-bar"><div class="fill" style="--w:90%; --i:0"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <span class="text-sm font-medium">CSS3</span>
+              <span class="font-mono text-xs text-navy-900/50">88%</span>
+            </div>
+            <div class="skill-bar"><div class="fill" style="--w:88%; --i:1"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <span class="text-sm font-medium">Tailwind CSS</span>
+              <span class="font-mono text-xs text-navy-900/50">85%</span>
+            </div>
+            <div class="skill-bar"><div class="fill" style="--w:85%; --i:2"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <span class="text-sm font-medium">Responsive Layout</span>
+              <span class="font-mono text-xs text-navy-900/50">92%</span>
+            </div>
+            <div class="skill-bar"><div class="fill" style="--w:92%; --i:3"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 2: Design / UX -->
+      <div class="bg-white border border-navy-900/10 p-8 lg:p-10">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="w-6 h-6 border border-emerald-dim flex items-center justify-center">
+            <span class="w-2 h-2 bg-emerald-dim"></span>
+          </span>
+          <span class="font-mono text-xs uppercase tracking-widest text-navy-900/50">B / Design & UX</span>
+        </div>
+        <h3 class="font-display font-bold text-xl mb-8">Design Discipline</h3>
+
+        <div class="space-y-6">
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <span class="text-sm font-medium">Figma</span>
+              <span class="font-mono text-xs text-navy-900/50">95%</span>
+            </div>
+            <div class="skill-bar"><div class="fill" style="--w:95%; --i:0"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <span class="text-sm font-medium">Material Design</span>
+              <span class="font-mono text-xs text-navy-900/50">88%</span>
+            </div>
+            <div class="skill-bar"><div class="fill" style="--w:88%; --i:1"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <span class="text-sm font-medium">Lottie Animation</span>
+              <span class="font-mono text-xs text-navy-900/50">80%</span>
+            </div>
+            <div class="skill-bar"><div class="fill" style="--w:80%; --i:2"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <span class="text-sm font-medium">Prototype & Microinteraction</span>
+              <span class="font-mono text-xs text-navy-900/50">90%</span>
+            </div>
+            <div class="skill-bar"><div class="fill" style="--w:90%; --i:3"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 3: Creative Suite -->
+      <div class="bg-white border border-navy-900/10 p-8 lg:p-10">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="w-6 h-6 border border-emerald-dim flex items-center justify-center">
+            <span class="w-2 h-2 bg-emerald-dim"></span>
+          </span>
+          <span class="font-mono text-xs uppercase tracking-widest text-navy-900/50">C / Creative Suite</span>
+        </div>
+        <h3 class="font-display font-bold text-xl mb-8">Production Craft</h3>
+
+        <div class="space-y-6">
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <span class="text-sm font-medium">After Effects</span>
+              <span class="font-mono text-xs text-navy-900/50">85%</span>
+            </div>
+            <div class="skill-bar"><div class="fill" style="--w:85%; --i:0"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <span class="text-sm font-medium">Photoshop</span>
+              <span class="font-mono text-xs text-navy-900/50">92%</span>
+            </div>
+            <div class="skill-bar"><div class="fill" style="--w:92%; --i:1"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <span class="text-sm font-medium">Illustrator</span>
+              <span class="font-mono text-xs text-navy-900/50">88%</span>
+            </div>
+            <div class="skill-bar"><div class="fill" style="--w:88%; --i:2"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <span class="text-sm font-medium">Premiere</span>
+              <span class="font-mono text-xs text-navy-900/50">78%</span>
+            </div>
+            <div class="skill-bar"><div class="fill" style="--w:78%; --i:3"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional capabilities -->
+    <div class="mt-16 lg:mt-20 grid lg:grid-cols-12 gap-8" data-reveal>
+      <div class="lg:col-span-4">
+        <div class="eyebrow !text-emerald-dim mb-4">Also Working With</div>
+        <p class="text-sm text-navy-900/60 leading-relaxed">Tools and methods I use situationally — picked up across roles.</p>
+      </div>
+      <div class="lg:col-span-8">
+        <div class="flex flex-wrap gap-3">
+          <span class="tag !text-navy-900 !border-navy-900/15 !bg-navy-900/[0.03]">GenAI Workflows</span>
+          <span class="tag !text-navy-900 !border-navy-900/15 !bg-navy-900/[0.03]">Design Tokens</span>
+          <span class="tag !text-navy-900 !border-navy-900/15 !bg-navy-900/[0.03]">Storybook</span>
+          <span class="tag !text-navy-900 !border-navy-900/15 !bg-navy-900/[0.03]">Notion</span>
+          <span class="tag !text-navy-900 !border-navy-900/15 !bg-navy-900/[0.03]">Jira</span>
+          <span class="tag !text-navy-900 !border-navy-900/15 !bg-navy-900/[0.03]">Maze</span>
+          <span class="tag !text-navy-900 !border-navy-900/15 !bg-navy-900/[0.03]">Hotjar</span>
+          <span class="tag !text-navy-900 !border-navy-900/15 !bg-navy-900/[0.03]">Google Analytics</span>
+          <span class="tag !text-navy-900 !border-navy-900/15 !bg-navy-900/[0.03]">User Interview</span>
+          <span class="tag !text-navy-900 !border-navy-900/15 !bg-navy-900/[0.03]">Wireframing</span>
+          <span class="tag !text-navy-900 !border-navy-900/15 !bg-navy-900/[0.03]">UX Research</span>
+          <span class="tag !text-navy-900 !border-navy-900/15 !bg-navy-900/[0.03]">Brand Identity</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED PROJECTS ============ -->
+<section id="works" class="relative bg-navy-900 py-32 lg:py-40">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+
+    <!-- Section header -->
+    <div class="grid lg:grid-cols-12 gap-12 mb-20 lg:mb-28">
+      <div class="lg:col-span-5">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-8 h-px bg-emerald"></span>
+          <span class="eyebrow">04 / Featured Works</span>
+        </div>
+        <h2 class="font-display font-black uppercase text-4xl lg:text-6xl leading-[0.9] tracking-[-0.02em]">
+          Selected<br>
+          <span class="text-emerald">Products.</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-7 lg:pt-8" data-reveal>
+        <p class="text-lg text-tech-soft leading-relaxed max-w-xl mb-6">
+          Four projects that span the full range of my practice — from a real-estate fintech mobile app to a high-density distribution management dashboard. Each was led end-to-end: research, IA, interaction, visual, handoff, and post-launch iteration.
+        </p>
+        <a href="https://behance.net/megadinh91" target="_blank" class="inline-flex items-center gap-2 text-emerald text-sm font-medium border-b border-emerald/30 pb-1 hover:border-emerald transition-colors" data-hover>
+          See full archive on Behance
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8m0 0L7 3m3 3L7 9" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Projects grid -->
+    <div class="space-y-32 lg:space-y-40">
+
+      <!-- PROJECT 1: Meey Finance -->
+      <article class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center group" data-reveal>
+        <!-- Image -->
+        <div class="lg:col-span-7">
+          <div class="media-card aspect-[16/11] bg-navy-800">
+            <img src="https://picsum.photos/seed/meey-finance-real-estate-fintech/1200/800" alt="Meey Finance mobile app and web platform" class="w-full h-full object-cover clip-reveal" />
+            <div class="overlay-arrow">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3m0 0H4m7 0v7" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </div>
+        </div>
+        <!-- Details -->
+        <div class="lg:col-span-5">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="font-mono text-xs text-emerald">/ 01</span>
+            <span class="w-12 h-px bg-white/15"></span>
+            <span class="eyebrow-soft">Mobile · Web</span>
+          </div>
+          <h3 class="font-display font-bold text-3xl lg:text-4xl mb-3 leading-tight">Meey Finance</h3>
+          <div class="text-emerald text-sm font-medium mb-5">Real-estate digital finance platform</div>
+          <p class="text-tech-soft leading-relaxed mb-6">
+            A cross-platform product enabling Vietnamese real-estate investors to evaluate, finance, and track property purchases. Designed the mobile app for retail investors and the web dashboard for institutional users — unified by a single design system.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="tag">Figma</span>
+            <span class="tag">Material Design</span>
+            <span class="tag">Lottie</span>
+            <span class="tag">iOS · Android · Web</span>
+          </div>
+          <div class="flex items-center gap-6 pt-6 border-t border-white/5">
+            <div>
+              <div class="eyebrow-soft mb-1">Role</div>
+              <div class="text-sm">Design Lead</div>
+            </div>
+            <div>
+              <div class="eyebrow-soft mb-1">Year</div>
+              <div class="text-sm">2022 — 2023</div>
+            </div>
+            <div>
+              <div class="eyebrow-soft mb-1">Team</div>
+              <div class="text-sm">MEEY LAND</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 2: iCheck DMS (reversed) -->
+      <article class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center group" data-reveal>
+        <!-- Details (left on desktop) -->
+        <div class="lg:col-span-5 lg:order-1 order-2">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="font-mono text-xs text-emerald">/ 02</span>
+            <span class="w-12 h-px bg-white/15"></span>
+            <span class="eyebrow-soft">Web · Dashboard</span>
+          </div>
+          <h3 class="font-display font-bold text-3xl lg:text-4xl mb-3 leading-tight">iCheck DMS & Dashboard</h3>
+          <div class="text-emerald text-sm font-medium mb-5">Distribution Management System</div>
+          <p class="text-tech-soft leading-relaxed mb-6">
+            A high-density analytics surface for FMCG distribution teams. Designed the data visualization system — chart taxonomy, filter patterns, and the field-team mobile companion used by thousands of sales reps tracking inventory across Vietnam.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="tag">Figma</span>
+            <span class="tag">Data Viz</span>
+            <span class="tag">Charts</span>
+            <span class="tag">Web + Mobile</span>
+          </div>
+          <div class="flex items-center gap-6 pt-6 border-t border-white/5">
+            <div>
+              <div class="eyebrow-soft mb-1">Role</div>
+              <div class="text-sm">Product Designer</div>
+            </div>
+            <div>
+              <div class="eyebrow-soft mb-1">Year</div>
+              <div class="text-sm">2020 — 2021</div>
+            </div>
+            <div>
+              <div class="eyebrow-soft mb-1">Team</div>
+              <div class="text-sm">iCHECK</div>
+            </div>
+          </div>
+        </div>
+        <!-- Image (right on desktop) -->
+        <div class="lg:col-span-7 lg:order-2 order-1">
+          <div class="media-card aspect-[16/11] bg-navy-800">
+            <img src="https://picsum.photos/seed/icheck-dms-dashboard-dataviz/1200/800" alt="iCheck DMS analytics dashboard" class="w-full h-full object-cover clip-reveal dir-tb" />
+            <div class="overlay-arrow">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3m0 0H4m7 0v7" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 3: MRD Invest & Winning OKRs -->
+      <article class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center group" data-reveal>
+        <div class="lg:col-span-7">
+          <div class="media-card aspect-[16/11] bg-navy-800">
+            <img src="https://picsum.photos/seed/mrd-invest-okr-landing-page/1200/800" alt="MRD Invest and Winning OKRs Secrets landing pages" class="w-full h-full object-cover clip-reveal dir-lr" />
+            <div class="overlay-arrow">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3m0 0H4m7 0v7" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="font-mono text-xs text-emerald">/ 03</span>
+            <span class="w-12 h-px bg-white/15"></span>
+            <span class="eyebrow-soft">Web · Landing</span>
+          </div>
+          <h3 class="font-display font-bold text-3xl lg:text-4xl mb-3 leading-tight">MRD Invest &<br>Winning OKRs Secrets</h3>
+          <div class="text-emerald text-sm font-medium mb-5">Corporate landing pages</div>
+          <p class="text-tech-soft leading-relaxed mb-6">
+            Two high-conversion corporate landing pages built for MRD's investment product and the "Winning OKRs Secrets" workshop series. Strong typographic hierarchy, motion-assisted storytelling, and conversion-focused information architecture.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="tag">Figma</span>
+            <span class="tag">HTML/CSS</span>
+            <span class="tag">Tailwind CSS</span>
+            <span class="tag">Landing Page</span>
+          </div>
+          <div class="flex items-center gap-6 pt-6 border-t border-white/5">
+            <div>
+              <div class="eyebrow-soft mb-1">Role</div>
+              <div class="text-sm">Design Lead</div>
+            </div>
+            <div>
+              <div class="eyebrow-soft mb-1">Year</div>
+              <div class="text-sm">2023</div>
+            </div>
+            <div>
+              <div class="eyebrow-soft mb-1">Type</div>
+              <div class="text-sm">Corporate</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 4: QR Check & USExpress (reversed) -->
+      <article class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center group" data-reveal>
+        <div class="lg:col-span-5 lg:order-1 order-2">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="font-mono text-xs text-emerald">/ 04</span>
+            <span class="w-12 h-px bg-white/15"></span>
+            <span class="eyebrow-soft">Mobile · E-commerce</span>
+          </div>
+          <h3 class="font-display font-bold text-3xl lg:text-4xl mb-3 leading-tight">QR Check App &<br>USExpress</h3>
+          <div class="text-emerald text-sm font-medium mb-5">E-commerce buy-from-US platform</div>
+          <p class="text-tech-soft leading-relaxed mb-6">
+            QR Check — an anti-counterfeit verification mobile app — paired with USExpress, a cross-border e-commerce platform enabling Vietnamese consumers to buy from US retailers. Designed the end-to-end purchase flow, product verification UX, and order tracking system.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="tag">Figma</span>
+            <span class="tag">Prototype</span>
+            <span class="tag">Mobile App</span>
+            <span class="tag">E-commerce</span>
+          </div>
+          <div class="flex items-center gap-6 pt-6 border-t border-white/5">
+            <div>
+              <div class="eyebrow-soft mb-1">Role</div>
+              <div class="text-sm">UI/UX Designer</div>
+            </div>
+            <div>
+              <div class="eyebrow-soft mb-1">Year</div>
+              <div class="text-sm">2019 — 2020</div>
+            </div>
+            <div>
+              <div class="eyebrow-soft mb-1">Team</div>
+              <div class="text-sm">iCHECK</div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-7 lg:order-2 order-1">
+          <div class="media-card aspect-[16/11] bg-navy-800">
+            <img src="https://picsum.photos/seed/qr-check-usexpress-ecommerce-mobile/1200/800" alt="QR Check app and USExpress e-commerce platform" class="w-full h-full object-cover clip-reveal dir-bt" />
+            <div class="overlay-arrow">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3m0 0H4m7 0v7" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE STRIP ============ -->
+<section class="relative bg-navy-950 py-10 border-y border-white/5 overflow-hidden">
+  <div class="marquee-track">
+    <div class="flex items-center gap-12 px-6 whitespace-nowrap">
+      <span class="font-display font-black uppercase text-3xl lg:text-5xl tracking-tight text-white/10">Design Systems</span>
+      <span class="text-emerald text-2xl">✦</span>
+      <span class="font-display font-black uppercase text-3xl lg:text-5xl tracking-tight text-white/10">GenAI Workflows</span>
+      <span class="text-emerald text-2xl">✦</span>
+      <span class="font-display font-black uppercase text-3xl lg:text-5xl tracking-tight text-white/10">Data Visualization</span>
+      <span class="text-emerald text-2xl">✦</span>
+      <span class="font-display font-black uppercase text-3xl lg:text-5xl tracking-tight text-white/10">Team Leadership</span>
+      <span class="text-emerald text-2xl">✦</span>
+      <span class="font-display font-black uppercase text-3xl lg:text-5xl tracking-tight text-white/10">Product Design</span>
+      <span class="text-emerald text-2xl">✦</span>
+    </div>
+    <div class="flex items-center gap-12 px-6 whitespace-nowrap" aria-hidden="true">
+      <span class="font-display font-black uppercase text-3xl lg:text-5xl tracking-tight text-white/10">Design Systems</span>
+      <span class="text-emerald text-2xl">✦</span>
+      <span class="font-display font-black uppercase text-3xl lg:text-5xl tracking-tight text-white/10">GenAI Workflows</span>
+      <span class="text-emerald text-2xl">✦</span>
+      <span class="font-display font-black uppercase text-3xl lg:text-5xl tracking-tight text-white/10">Data Visualization</span>
+      <span class="text-emerald text-2xl">✦</span>
+      <span class="font-display font-black uppercase text-3xl lg:text-5xl tracking-tight text-white/10">Team Leadership</span>
+      <span class="text-emerald text-2xl">✦</span>
+      <span class="font-display font-black uppercase text-3xl lg:text-5xl tracking-tight text-white/10">Product Design</span>
+      <span class="text-emerald text-2xl">✦</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="relative bg-navy-900 py-32 lg:py-40">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+
+    <!-- Section header -->
+    <div class="grid lg:grid-cols-12 gap-12 mb-20">
+      <div class="lg:col-span-5">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-8 h-px bg-emerald"></span>
+          <span class="eyebrow">05 / Contact</span>
+        </div>
+        <h2 class="font-display font-black uppercase text-4xl lg:text-6xl leading-[0.9] tracking-[-0.02em]">
+          Let's<br>
+          <span class="text-emerald">build.</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-7 lg:pt-8" data-reveal>
+        <p class="text-lg text-tech-soft leading-relaxed max-w-xl">
+          Open to senior product design and design leadership roles, consulting engagements, and conversations about building Design Systems with GenAI. Response time: 24 hours.
+        </p>
+      </div>
+    </div>
+
+    <!-- Contact grid -->
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
+
+      <!-- Left: form -->
+      <div class="lg:col-span-7" data-reveal>
+        <form class="space-y-8" id="contact-form">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <label class="form-label block mb-2">Your Name</label>
+              <input type="text" class="form-input" placeholder="Jane Doe" required>
+            </div>
+            <div>
+              <label class="form-label block mb-2">Email</label>
+              <input type="email" class="form-input" placeholder="jane@company.com" required>
+            </div>
+          </div>
+          <div>
+            <label class="form-label block mb-2">Company / Role</label>
+            <input type="text" class="form-input" placeholder="Acme · Head of Product">
+          </div>
+          <div>
+            <label class="form-label block mb-2">Project Type</label>
+            <div class="flex flex-wrap gap-2 pt-4">
+              <label class="tag cursor-pointer has-[:checked]:bg-emerald/10 has-[:checked]:border-emerald/40 has-[:checked]:text-emerald">
+                <input type="checkbox" class="hidden"> Full-time Role
+              </label>
+              <label class="tag cursor-pointer has-[:checked]:bg-emerald/10 has-[:checked]:border-emerald/40 has-[:checked]:text-emerald">
+                <input type="checkbox" class="hidden"> Design System Audit
+              </label>
+              <label class="tag cursor-pointer has-[:checked]:bg-emerald/10 has-[:checked]:border-emerald/40 has-[:checked]:text-emerald">
+                <input type="checkbox" class="hidden"> Consulting
+              </label>
+              <label class="tag cursor-pointer has-[:checked]:bg-emerald/10 has-[:checked]:border-emerald/40 has-[:checked]:text-emerald">
+                <input type="checkbox" class="hidden"> Workshop / Talk
+              </label>
+            </div>
+          </div>
+          <div>
+            <label class="form-label block mb-2">Brief</label>
+            <textarea class="form-input resize-none" rows="3" placeholder="Tell me about the team, the product, and what you're trying to solve."></textarea>
+          </div>
+          <div class="pt-4">
+            <button type="submit" class="btn btn-primary" data-hover>
+              Send Message
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3m0 0H4m7 0v7" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Right: contact info + QR -->
+      <div class="lg:col-span-5">
+        <div class="sticky top-32 space-y-6" data-reveal>
+
+          <!-- Direct contact -->
+          <div class="border border-white/10 p-8 bg-navy-800/40">
+            <div class="eyebrow mb-6">Direct Lines</div>
+            <div class="space-y-5">
+              <a href="mailto:megadinh@gmail.com" class="flex items-start gap-4 group" data-hover>
+                <div class="w-10 h-10 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:border-emerald transition-colors">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12v8H2V4zm0 0l6 5 6-5" stroke="currentColor" stroke-width="1.3"/></svg>
+                </div>
+                <div>
+                  <div class="eyebrow-soft mb-0.5">Email</div>
+                  <div class="text-sm group-hover:text-emerald transition-colors">megadinh@gmail.com</div>
+                </div>
+              </a>
+              <a href="tel:+84869966206" class="flex items-start gap-4 group" data-hover>
+                <div class="w-10 h-10 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:border-emerald transition-colors">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 2h3l1.5 4-2 1.5a9 9 0 005 5l1.5-2 4 1.5v3a2 2 0 01-2 2A12 12 0 013 4a2 2 0 012-2z" stroke="currentColor" stroke-width="1.3"/></svg>
+                </div>
+                <div>
+                  <div class="eyebrow-soft mb-0.5">Phone</div>
+                  <div class="text-sm group-hover:text-emerald transition-colors">+84 869 966 206</div>
+                </div>
+              </a>
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 border border-white/10 flex items-center justify-center flex-shrink-0">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 14s5-4.5 5-8a5 5 0 00-10 0c0 3.5 5 8 5 8z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.3"/></svg>
+                </div>
+                <div>
+                  <div class="eyebrow-soft mb-0.5">Location</div>
+                  <div class="text-sm">Hanoi, Vietnam · UTC+7</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Socials -->
+          <div class="border border-white/10 p-8 bg-navy-800/40">
+            <div class="eyebrow mb-6">Portfolios</div>
+            <div class="space-y-3">
+              <a href="https://behance.net/megadinh91" target="_blank" class="flex items-center justify-between py-2 border-b border-white/5 group" data-hover>
+                <span class="text-sm">Behance</span>
+                <span class="flex items-center gap-2 text-xs text-tech-mute group-hover:text-emerald transition-colors">
+                  behance.net/megadinh91
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 8L8 2m0 0H3m5 0v5" stroke="currentColor" stroke-width="1.2"/></svg>
+                </span>
+              </a>
+              <a href="https://dribbble.com/megadinh" target="_blank" class="flex items-center justify-between py-2 border-b border-white/5 group" data-hover>
+                <span class="text-sm">Dribbble</span>
+                <span class="flex items-center gap-2 text-xs text-tech-mute group-hover:text-emerald transition-colors">
+                  dribbble.com/megadinh
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 8L8 2m0 0H3m5 0v5" stroke="currentColor" stroke-width="1.2"/></svg>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <!-- QR -->
+          <div class="border border-white/10 p-8 bg-navy-800/40 flex items-center gap-6">
+            <div class="w-24 h-24 bg-white p-2 flex-shrink-0">
+              <!-- QR placeholder -->
+              <div class="w-full h-full grid grid-cols-8 grid-rows-8 gap-px">
+                <!-- Generate QR-like pattern -->
+                <div class="bg-navy-900 col-span-3 row-span-3"></div>
+                <div class="bg-navy-900"></div><div></div><div class="bg-navy-900"></div>
+                <div class="bg-navy-900 col-span-3 row-span-3"></div>
+                <div class="bg-navy-900"></div><div class="bg-navy-900"></div><div></div>
+                <div></div><div class="bg-navy-900"></div><div></div><div class="bg-navy-900"></div><div></div>
+                <div class="bg-navy-900"></div><div></div><div class="bg-navy-900"></div><div></div><div class="bg-navy-900"></div>
+                <div></div><div class="bg-navy-900"></div><div></div><div class="bg-navy-900 col-span-2"></div><div></div>
+                <div class="bg-navy-900 col-span-3 row-span-3"></div><div></div><div class="bg-navy-900"></div><div></div>
+                <div></div><div></div><div></div><div class="bg-navy-900"></div><div></div>
+                <div class="bg-navy-900 col-span-3 row-span-3"></div><div class="bg-navy-900"></div><div></div><div class="bg-navy-900"></div>
+              </div>
+            </div>
+            <div>
+              <div class="eyebrow mb-2">Scan to Save</div>
+              <div class="text-sm leading-relaxed text-tech-soft">Quick-add my contact to your phone.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="relative bg-navy-950 border-t border-white/5 py-16">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+
+    <!-- Big name -->
+    <div class="mb-12 overflow-hidden">
+      <h3 class="font-display font-black uppercase text-[14vw] lg:text-[10vw] leading-[0.9] tracking-[-0.03em] text-white/5">
+        Mai Van Dinh
+      </h3>
+    </div>
+
+    <!-- Footer grid -->
+    <div class="grid md:grid-cols-3 gap-8 pt-8 border-t border-white/5">
+      <div>
+        <div class="eyebrow-soft mb-2">© 2025</div>
+        <div class="text-sm text-tech-soft">Mai Van Dinh — Product Design Lead<br>Designed & coded with intent.</div>
+      </div>
+      <div>
+        <div class="eyebrow-soft mb-2">Navigate</div>
+        <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+          <a href="#about" class="hover:text-emerald transition-colors" data-hover>About</a>
+          <a href="#experience" class="hover:text-emerald transition-colors" data-hover>Experience</a>
+          <a href="#skills" class="hover:text-emerald transition-colors" data-hover>Skills</a>
+          <a href="#works" class="hover:text-emerald transition-colors" data-hover>Works</a>
+          <a href="#contact" class="hover:text-emerald transition-colors" data-hover>Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow-soft mb-2">Elsewhere</div>
+        <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+          <a href="https://behance.net/megadinh91" target="_blank" class="hover:text-emerald transition-colors" data-hover>Behance ↗</a>
+          <a href="https://dribbble.com/megadinh" target="_blank" class="hover:text-emerald transition-colors" data-hover>Dribbble ↗</a>
+          <a href="mailto:megadinh@gmail.com" class="hover:text-emerald transition-colors" data-hover>Email ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom strip -->
+    <div class="mt-12 pt-6 border-t border-white/5 flex flex-wrap items-center justify-between gap-4">
+      <div class="text-xs text-tech-mute font-mono">v1.0 · Built with Tailwind + GSAP · Inter</div>
+      <div class="flex items-center gap-2 text-xs text-tech-mute">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald animate-pulse"></span>
+        Available for new projects
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+  // === Lenis smooth scroll ===
+  const lenis = new Lenis({
+    duration: 1.1,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // GSAP + ScrollTrigger
+  gsap.registerPlugin(ScrollTrigger);
+  lenis.on('scroll', ScrollTrigger.update);
+
+  // === Reduced motion check ===
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // === Custom cursor ===
+  const cursor = document.getElementById('cursor');
+  if (cursor && window.matchMedia('(pointer: fine)').matches) {
+    let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+    });
+    function animateCursor() {
+      cursorX += (mouseX - cursorX) * 0.2;
+      cursorY += (mouseY - cursorY) * 0.2;
+      cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.querySelectorAll('[data-hover], a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('is-hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('is-hover'));
+    });
+  }
+
+  // === Mobile menu ===
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  let menuOpen = false;
+  menuToggle.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('is-open', menuOpen);
+    menuToggle.classList.toggle('is-open', menuOpen);
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuOpen = false;
+      mobileMenu.classList.remove('is-open');
+    });
+  });
+
+  // === Nav scroll state ===
+  const nav = document.getElementById('nav');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 50) {
+      nav.style.background = 'rgba(10, 37, 68, 0.85)';
+      nav.style.backdropFilter = 'blur(12px)';
+      nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.05)';
+    } else {
+      nav.style.background = 'transparent';
+      nav.style.backdropFilter = 'none';
+      nav.style.borderBottom = 'none';
+    }
+    lastScroll = y;
+  });
+
+  // === Hero pin shrink ===
+  if (!prefersReduced) {
+    ScrollTrigger.create({
+      trigger: '#hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1,
+      onUpdate: (s) => {
+        const progress = s.progress;
+        // Big text drifts up faster
+        gsap.set('#hero-bigtext h2', { yPercent: -progress * 30, opacity: 1 - progress * 0.5 });
+        // Portrait parallax
+        gsap.set('#hero-portrait-wrap', { yPercent: -progress * 15, opacity: 1 - progress * 0.4 });
+        // Text slight upward drift
+        gsap.set('#hero-text', { yPercent: -progress * 8, opacity: 1 - progress * 0.3 });
+        // Scroll indicator fade
+        gsap.set('#hero-scroll-indicator', { opacity: 1 - progress * 2 });
+        // Grid fade
+        gsap.set('#hero-bg', { opacity: 0.4 - progress * 0.4 });
+      },
+    });
+  }
+
+  // === Reveal observer ===
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in');
+        // Also add to children with line-mask
+        entry.target.querySelectorAll('.line-mask').forEach((el, i) => {
+          const inner = el.querySelector('.inner');
+          if (inner && !inner.style.getPropertyValue('--i')) {
+            inner.style.setProperty('--i', i);
+          }
+        });
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+
+  document.querySelectorAll('[data-reveal], section').forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  // === Hero entrance ===
+  if (!prefersReduced) {
+    // Trigger hero text reveal immediately
+    setTimeout(() => {
+      document.getElementById('hero-text').classList.add('is-in');
+      document.getElementById('hero-name').classList.add('is-in');
+    }, 200);
+  } else {
+    document.querySelectorAll('.line-mask .inner').forEach(el => {
+      el.style.transform = 'none';
+    });
+    document.querySelectorAll('.reveal').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  }
+
+  // === Project image clip reveal on scroll ===
+  document.querySelectorAll('.clip-reveal').forEach((el) => {
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 85%',
+      once: true,
+      onEnter: () => {
+        el.parentElement.parentElement.classList.add('is-in');
+      }
+    });
+  });
+
+  // === Skills bar trigger ===
+  ScrollTrigger.create({
+    trigger: '#skills',
+    start: 'top 70%',
+    once: true,
+    onEnter: () => {
+      document.querySelector('#skills').classList.add('is-in');
+    }
+  });
+
+  // === Form submission (demo) ===
+  document.getElementById('contact-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const original = btn.innerHTML;
+    btn.innerHTML = 'Message Sent ✓';
+    btn.style.background = 'var(--accent-bright)';
+    setTimeout(() => {
+      btn.innerHTML = original;
+      btn.style.background = '';
+      e.target.reset();
+    }, 2500);
+  });
+
+  // === Smooth anchor scroll via Lenis ===
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        lenis.scrollTo(target, { offset: -60, duration: 1.4 });
+      }
+    });
+  });
+
+  // Refresh ScrollTrigger after load
+  window.addEventListener('load', () => {
+    ScrollTrigger.refresh();
+  });
+</script>
+
+</body>
+</html>
