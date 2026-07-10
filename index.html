@@ -39,6 +39,78 @@
     html {
       scroll-behavior: smooth;
     }
+
+    .animate-fade-in-up {
+      opacity: 0;
+      transform: translateY(28px);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .animate-hero-title {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeInUp 1s ease 0.15s forwards;
+    }
+
+    .animate-hero-copy {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease 0.3s forwards;
+    }
+
+    .animate-hero-buttons > * {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeInUp 0.9s ease 0.45s forwards;
+    }
+
+    .animate-glow-pulse {
+      animation: glowPulse 2.5s ease-in-out infinite;
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-shimmer {
+      background: linear-gradient(120deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0.03) 100%);
+      background-size: 200% 200%;
+      animation: shimmer 2.5s linear infinite;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% {
+        box-shadow: 0 0 0 rgba(51, 180, 74, 0.22);
+      }
+      50% {
+        box-shadow: 0 0 40px rgba(51, 180, 74, 0.2);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    @keyframes shimmer {
+      from {
+        background-position: -200% 0;
+      }
+      to {
+        background-position: 200% 0;
+      }
+    }
   </style>
 </head>
 
@@ -57,7 +129,7 @@
         <a href="#contact" class="transition hover:text-white">Contact</a>
       </nav>
       <a href="#contact"
-        class="hidden rounded-full border border-white/15 bg-emerald px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-navy-950 transition hover:bg-emerald/90 md:inline-flex">Let's
+        class="hidden rounded-full border border-white/15 bg-emerald px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-emerald/90 md:inline-flex animate-glow-pulse">Let's
         Talk</a>
     </div>
   </header>
@@ -65,25 +137,25 @@
   <main>
     <section id="hero"
       class="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(51,180,74,0.15),_transparent_30%),linear-gradient(180deg,#061A33_0%,#0A2544_100%)] px-6 py-24">
-      <div class="mx-auto flex max-w-[1200px] flex-col gap-14 lg:flex-row lg:items-center lg:gap-24">
+      <div class="mx-auto flex max-w-[1200px] flex-col gap-14 lg:flex-row lg:items-center lg:gap-24 animate-fade-in-up">
         <div class="lg:w-7/12">
-          <div class="mb-6 inline-flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-emerald/80">
+          <div class="mb-6 inline-flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-emerald/80 animate-fade-in-up">
             <span class="h-1 w-1 rounded-full bg-emerald"></span>
             Available for Senior Roles · Hanoi, VN
           </div>
           <h1
-            class="font-display text-5xl font-black uppercase leading-[0.9] tracking-[-0.04em] text-white sm:text-6xl lg:text-[5rem]">
+            class="font-display text-5xl font-black uppercase leading-[0.9] tracking-[-0.04em] text-white sm:text-6xl lg:text-[5rem] animate-hero-title">
             <span>Mai Van</span><br>
             <span>Dinh<span class="text-emerald">.</span></span>
           </h1>
-          <p class="mt-8 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
+          <p class="mt-8 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl animate-hero-copy">
             Product Design Lead with <span class="text-white font-semibold">5+ years</span> shipping UX/UI for
             cybersecurity, real estate, and enterprise platforms. Building unified design systems and GenAI-assisted
             workflows for teams that ship fast.
           </p>
-          <div class="mt-10 flex flex-wrap gap-4">
+          <div class="mt-10 flex flex-wrap gap-4 animate-hero-buttons">
             <a href="https://behance.net/megadinh91" target="_blank"
-              class="inline-flex items-center gap-3 rounded-full bg-emerald px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-navy-950 transition hover:bg-emerald/90">View
+              class="inline-flex items-center gap-3 rounded-full bg-emerald px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-emerald/90">View
               Behance</a>
             <a href="https://dribbble.com/megadinh" target="_blank"
               class="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-100 transition hover:border-emerald hover:text-emerald">Dribbble
@@ -108,10 +180,10 @@
 
         <div class="lg:w-5/12">
           <div
-            class="overflow-hidden rounded-3xl border border-white/10 bg-navy-800 p-1 shadow-[0_30px_80px_rgba(0,0,0,0.25)]">
+            class="overflow-hidden rounded-3xl border border-white/10 bg-navy-800 p-1 shadow-[0_30px_80px_rgba(0,0,0,0.25)] animate-float">
             <img src="image/Avatar.jpg" alt="Mai Van Dinh portrait" class="h-full w-full object-cover" />
           </div>
-          <div class="mt-6 rounded-3xl border border-white/10 bg-navy-950/80 p-5 text-sm text-slate-200">
+          <div class="mt-6 rounded-3xl border border-white/10 bg-navy-950/80 p-5 text-sm text-slate-200 transition duration-500 hover:-translate-y-1 hover:shadow-[0_25px_70px_rgba(51,180,74,0.18)] animate-fade-in-up">
             <p class="uppercase tracking-[0.2em] text-slate-500">Currently</p>
             <p class="mt-2 text-white font-semibold">Product Design Lead</p>
             <p class="text-emerald">@ CMC Cyber Security</p>
@@ -162,19 +234,19 @@
             </p>
 
             <div class="grid gap-6 sm:grid-cols-2">
-              <div class="rounded-3xl border border-white/10 bg-navy-950/70 p-6">
+              <div class="rounded-3xl border border-white/10 bg-navy-950/70 p-6 transition duration-500 hover:-translate-y-1 hover:shadow-[0_25px_70px_rgba(51,180,74,0.18)] animate-fade-in-up">
                 <p class="text-4xl font-black text-emerald">5+</p>
                 <p class="mt-2 text-xs uppercase tracking-[0.3em] text-slate-400">Years in UX/UI</p>
               </div>
-              <div class="rounded-3xl border border-white/10 bg-navy-950/70 p-6">
+              <div class="rounded-3xl border border-white/10 bg-navy-950/70 p-6 transition duration-500 hover:-translate-y-1 hover:shadow-[0_25px_70px_rgba(51,180,74,0.18)] animate-fade-in-up">
                 <p class="text-4xl font-black text-emerald">15+</p>
                 <p class="mt-2 text-xs uppercase tracking-[0.3em] text-slate-400">Shipped Products</p>
               </div>
-              <div class="rounded-3xl border border-white/10 bg-navy-950/70 p-6">
+              <div class="rounded-3xl border border-white/10 bg-navy-950/70 p-6 transition duration-500 hover:-translate-y-1 hover:shadow-[0_25px_70px_rgba(51,180,74,0.18)] animate-fade-in-up">
                 <p class="text-4xl font-black text-emerald">5</p>
                 <p class="mt-2 text-xs uppercase tracking-[0.3em] text-slate-400">Companies Led</p>
               </div>
-              <div class="rounded-3xl border border-white/10 bg-navy-950/70 p-6">
+              <div class="rounded-3xl border border-white/10 bg-navy-950/70 p-6 transition duration-500 hover:-translate-y-1 hover:shadow-[0_25px_70px_rgba(51,180,74,0.18)] animate-fade-in-up">
                 <p class="text-4xl font-black text-emerald">3+</p>
                 <p class="mt-2 text-xs uppercase tracking-[0.3em] text-slate-400">Unified Design System</p>
               </div>
@@ -211,7 +283,7 @@
                   · Native</span>
                 <span
                   class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.2em] text-slate-200">English
-                  · Professional</span>
+                  · Basic </span>
               </div>
             </div>
           </div>
@@ -228,12 +300,11 @@
               02 / Experience
             </div>
             <h2 class="font-display text-4xl font-black uppercase tracking-[-0.03em] text-white sm:text-5xl">
-              Nine years.<br>
-              <span class="text-emerald">Five teams.</span><br>
-              One craft.
+              5+ years.<br>
+              <span class="text-emerald">UX/UI leadership.</span><br>
+              AI-augmented product design.
             </h2>
-            <p class="max-w-sm text-slate-400">A vertical trace through Vietnam's most demanding product environments —
-              from newsroom design to cybersecurity tooling.</p>
+            <p class="max-w-sm text-slate-400">Experienced in product design for cybersecurity, enterprise platforms, and newsroom workflows, with a focus on design systems, team leadership, and AI-assisted product delivery.</p>
           </div>
 
           <div class="space-y-14">
@@ -510,6 +581,12 @@
                 </div>
               </div>
               <div>
+                <div class="flex justify-between text-sm font-medium"><span>Canva</span><span>86%</span></div>
+                <div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-200">
+                  <div class="h-full w-[86%] rounded-full bg-emerald"></div>
+                </div>
+              </div>
+              <div>
                 <div class="flex justify-between text-sm font-medium"><span>Premiere</span><span>78%</span></div>
                 <div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-200">
                   <div class="h-full w-[78%] rounded-full bg-emerald"></div>
@@ -592,9 +669,9 @@
             </h2>
           </div>
           <div class="space-y-6 text-slate-300">
-            <p class="text-lg leading-8">Twelve featured works organized by project folder: cybersecurity, fintech,
-              distribution, dashboard, commerce and landing page systems. Click any card to open a modal slideshow of
-              every image in that set.</p>
+            <p class="text-lg leading-8">Selected product work across cybersecurity, enterprise dashboards, newsroom systems,
+              and landing page experiences. Each case reflects design systems, AI-augmented workflows, and UX shipped
+              for high-demand Vietnamese and enterprise clients.</p>
             <a href="https://behance.net/megadinh91" target="_blank"
               class="inline-flex items-center gap-2 text-sm font-medium text-emerald transition hover:text-emerald/80">See
               full archive on Behance →</a>
@@ -820,7 +897,7 @@
             <button id="gallery-prev"
               class="rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm uppercase tracking-[0.18em] text-white transition hover:bg-white/10">Previous</button>
             <button id="gallery-next"
-              class="rounded-full border border-white/10 bg-emerald px-5 py-3 text-sm uppercase tracking-[0.18em] text-navy-950 transition hover:bg-emerald/90">Next</button>
+              class="rounded-full border border-white/10 bg-emerald px-5 py-3 text-sm uppercase tracking-[0.18em] text-white transition hover:bg-emerald/90">Next</button>
           </div>
         </div>
       </div>
@@ -868,7 +945,7 @@
                 class="w-full resize-none rounded-2xl border border-white/10 bg-navy-900/60 px-4 py-3 text-white outline-none placeholder:text-slate-500"></textarea>
             </label>
             <button type="submit"
-              class="inline-flex items-center justify-center rounded-full bg-emerald px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-navy-950 transition hover:bg-emerald/90">Send
+              class="inline-flex items-center justify-center rounded-full bg-emerald px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-emerald/90">Send
               Message</button>
           </form>
 
@@ -896,13 +973,7 @@
                   class="block rounded-2xl border border-white/10 bg-navy-900/60 px-4 py-4 transition hover:border-emerald hover:text-emerald">Dribbble</a>
               </div>
             </div>
-            <div class="flex gap-4 rounded-3xl border border-white/10 bg-white/5 p-4">
-              <div class="aspect-square w-24 rounded-2xl bg-white p-2"></div>
-              <div>
-                <p class="uppercase tracking-[0.2em] text-emerald/80">Scan to Save</p>
-                <p class="mt-2 text-sm text-slate-300">Quick-add my contact to your phone.</p>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
